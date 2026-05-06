@@ -1,0 +1,55 @@
+name: Notify Astro Blog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-content-to-blog-repo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      TARGET_REPO: dodolalorc/astro-blog
+      TARGET_BRANCH: main
+      TARGET_PATH: src/content
+    steps:
+      - name: Checkout source content repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Checkout target blog repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.TARGET_REPO }}
+          ref: ${{ env.TARGET_BRANCH }}
+          token: ${{ secrets.BLOG_REPO_TOKEN }}
+          path: target-repo
+
+      - name: Sync content (exclude .github)
+        shell: bash
+        run: |
+          mkdir -p "target-repo/${TARGET_PATH}"
+          rsync -av --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='target-repo' \
+            ./ "target-repo/${TARGET_PATH}/"
+
+      - name: Commit and push changes to target repository
+        shell: bash
+        run: |
+          cd target-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git add .
+          git commit -m "chore: sync content from digital-garden (${GITHUB_SHA::7})"
+          git push origin "${TARGET_BRANCH}"
