@@ -11,7 +11,7 @@ jobs:
     permissions:
       contents: read
     env:
-      TARGET_REPO: dodolalorc/astro-blog
+      TARGET_REPO: dodolalorc/astro-whono
       TARGET_BRANCH: main
       TARGET_PATH: src/content
     steps:
