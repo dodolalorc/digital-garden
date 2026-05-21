@@ -2,7 +2,7 @@
 title: "老东西这么萌"
 date: "2026-05-12T16:22:25+08:00"
 updatedDate: "2026-05-12T16:22:25+08:00"
-draft: true
+draft: false
 type: text
 mood: ""
 location: "长春"

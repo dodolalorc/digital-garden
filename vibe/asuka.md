@@ -2,7 +2,7 @@
 title: "我喜欢的女孩子——Asuka"
 date: "2026-05-11T01:01:45+08:00"
 updatedDate: "2026-05-11T01:01:45+08:00"
-draft: true
+draft: false
 type: text
 mood: ""
 location: "吉林"
