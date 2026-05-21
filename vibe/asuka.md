@@ -3,7 +3,7 @@ title: "我喜欢的女孩子——Asuka"
 date: "2026-05-11T01:01:45+08:00"
 updatedDate: "2026-05-11T01:01:45+08:00"
 draft: false
-type: text
+type: photo
 mood: ""
 location: "吉林"
 images: 
