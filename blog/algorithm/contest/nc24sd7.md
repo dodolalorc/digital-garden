@@ -1,6 +1,6 @@
 ---
 title: "🫟2024牛客暑假多校训练营Day7||补题"
-description: ""
+description: "2024 牛客暑假多校训练营 Day7 的补题记录，涵盖怪物战斗、球类模拟和字符串子序列相关题。"
 date: "2024-08-09T00:26:24+08:00"
 draft: true
 showHeroImage: false

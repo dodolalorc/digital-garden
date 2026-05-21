@@ -1,6 +1,6 @@
 ---
 title: "LeetCode Hot 100记录（19/100）"
-description: ""
+description: "LeetCode Hot 100 刷题记录，按哈希、双指针等分类整理题意与代码实现。"
 date: "2025-03-13T14:13:22+08:00"
 draft: true
 showHeroImage: false

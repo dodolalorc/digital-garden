@@ -1,6 +1,6 @@
 ---
 title: "NENU2023学年算法2例题"
-description: ""
+description: "NENU 2023 学年算法 2 例题整理，按递归等专题记录 OJ 题目、思路和代码。"
 date: "2023-12-19T22:02:50+08:00"
 draft: true
 showHeroImage: false

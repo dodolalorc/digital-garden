@@ -1,6 +1,6 @@
 ---
 title: "2024杭电钉耙编程联赛Day1||补题"
-description: ""
+description: "2024 杭电钉耙编程联赛 Day1 的补题记录，整理循环位移、星星、位运算和集合并等题目的解法。"
 date: "2024-07-19T19:08:39+08:00"
 draft: true
 showHeroImage: false

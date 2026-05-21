@@ -1,6 +1,6 @@
 ---
 title: "🎉2024牛客寒假营1||补题"
-description: ""
+description: "2024 牛客寒假营第 1 场补题记录，整理 DFS 搜索、贪心、分配与模拟等题目的解法。"
 date: "2024-02-02T20:30:40+08:00"
 draft: true
 showHeroImage: false

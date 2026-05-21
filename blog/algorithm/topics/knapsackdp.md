@@ -1,6 +1,6 @@
 ---
 title: "刷题记录||背包动态规划"
-description: ""
+description: "背包动态规划刷题记录，整理采药、开心的金明、榨取 kkksc03 等背包模型题。"
 date: "2024-03-09T21:49:34+08:00"
 draft: true
 showHeroImage: false

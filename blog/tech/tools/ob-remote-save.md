@@ -1,6 +1,6 @@
 ---
 title: "obsidian远程同步方案"
-description: ""
+description: "Obsidian 远程同步方案记录，整理 infiniCloud 与 Obsidian 的连接配置和进一步同步设置。"
 date: "2026-05-12T15:56:01+08:00"
 draft: true
 showHeroImage: false

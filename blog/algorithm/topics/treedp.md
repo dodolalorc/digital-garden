@@ -1,6 +1,6 @@
 ---
 title: "刷题记录||树形动态规划"
-description: ""
+description: "树形动态规划刷题记录，整理没有上司的舞会、加分二叉树和最大子树和等经典题。"
 date: "2024-03-09T21:51:07+08:00"
 draft: true
 showHeroImage: false

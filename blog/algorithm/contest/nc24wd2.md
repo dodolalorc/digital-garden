@@ -1,6 +1,6 @@
 ---
 title: "🎉2024牛客寒假营2||补题"
-description: ""
+description: "2024 牛客寒假营第 2 场补题记录，围绕 Tokitsukaze 系列题整理构造、消除和最短路思路。"
 date: "2024-02-09T14:46:52+08:00"
 draft: true
 showHeroImage: false

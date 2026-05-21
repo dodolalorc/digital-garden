@@ -1,6 +1,6 @@
 ---
 title: "刷题记录||区间动态规划"
-description: ""
+description: "区间动态规划刷题记录，整理石子合并、248G 等典型题的状态设计、转移思路与代码。"
 date: "2024-09-11T21:50:26+08:00"
 draft: true
 showHeroImage: false

@@ -1,6 +1,6 @@
 ---
 title: "JavaScript 原型链简述"
-description: ""
+description: "JavaScript 原型链笔记，通过示例梳理原型对象、继承关系和原型链结构。"
 date: "2025-10-08T22:49:23+08:00"
 draft: true
 showHeroImage: false

@@ -1,6 +1,6 @@
 ---
 title: "大文件上传和下载问题"
-description: ""
+description: "大文件上传下载笔记，整理切片上传的基本术语、示例代码和优化方向。"
 date: "2025-03-17T13:17:45+08:00"
 draft: true
 showHeroImage: false

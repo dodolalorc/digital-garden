@@ -1,6 +1,6 @@
 ---
 title: "🫟2024牛客暑假多校训练营Day6||补题"
-description: ""
+description: "2024 牛客暑假多校训练营 Day6 的补题记录，整理 Cake 系列题和 Puzzle: Wagiri 的解法。"
 date: "2024-08-05T10:15:52+08:00"
 draft: true
 showHeroImage: false

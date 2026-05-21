@@ -1,6 +1,6 @@
 ---
 title: "我的 oh-my-posh 上都有哪些配置"
-description: ""
+description: "Windows 终端配置笔记，整理 PowerShell 模块命令、Oh My Posh 配置以及常用 Git 别名函数。"
 date: "2025-08-23T02:05:47+08:00"
 draft: true
 showHeroImage: false

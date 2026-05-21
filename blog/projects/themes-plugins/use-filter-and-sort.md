@@ -1,6 +1,6 @@
 ---
 title: "为最近笔记添加排序和筛选"
-description: ""
+description: "记录为最近笔记列表添加排序和筛选功能的配置方式与实现思路。"
 date: "2025-08-02T03:55:35+08:00"
 draft: true
 showHeroImage: false

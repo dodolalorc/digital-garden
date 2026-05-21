@@ -1,6 +1,6 @@
 ---
 title: "🫟2024牛客暑假多校训练营Day3||补题"
-description: ""
+description: "2024 牛客暑假多校训练营 Day3 的补题记录，包含 Bridging the Gap、Crash Test 和 Dominoes 等题的题解。"
 date: "2024-07-23T18:37:58+08:00"
 draft: true
 showHeroImage: false

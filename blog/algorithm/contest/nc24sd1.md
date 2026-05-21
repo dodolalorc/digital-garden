@@ -1,6 +1,6 @@
 ---
 title: "🫟2024牛客暑假多校训练营Day1||补题"
-description: ""
+description: "2024 牛客暑假多校训练营 Day1 的补题记录，围绕 Bit Common 系列题整理题意、思路和代码。"
 date: "2024-07-16T19:36:00+08:00"
 draft: true
 showHeroImage: false

@@ -1,6 +1,6 @@
 ---
 title: "JavaScript 垃圾回收机制简述"
-description: ""
+description: "JavaScript 垃圾回收笔记，介绍标记清除算法、优化概念以及避免内存泄漏的常见做法。"
 date: "2025-10-08T22:52:14+08:00"
 draft: true
 showHeroImage: false

@@ -1,6 +1,6 @@
 ---
 title: "🎉2024牛客寒假营3||补题"
-description: ""
+description: "2024 牛客寒假营第 3 场补题记录，整理智乃主题题、最大子段和与比较函数等问题。"
 date: "2024-02-13T20:21:21+08:00"
 draft: true
 showHeroImage: false

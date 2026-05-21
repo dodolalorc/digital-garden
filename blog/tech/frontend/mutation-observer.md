@@ -1,6 +1,6 @@
 ---
 title: "MutationObserver学习+实践"
-description: ""
+description: "MutationObserver 学习与实践记录，分析页面加载监听的局限，并用观察 DOM 变化实现主题效果。"
 date: "2024-07-04T16:31:24+08:00"
 draft: true
 showHeroImage: false

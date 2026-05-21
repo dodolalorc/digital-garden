@@ -1,6 +1,6 @@
 ---
 title: "字符串匹配问题||前缀函数+KMP+字符串哈希"
-description: ""
+description: "字符串匹配专题笔记，整理暴力匹配、前缀函数、KMP 和字符串哈希的原理与代码。"
 date: "2024-01-05T14:11:58+08:00"
 draft: true
 showHeroImage: false

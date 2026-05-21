@@ -1,6 +1,6 @@
 ---
 title: "🫟2024牛客暑假多校训练营Day2||补题"
-description: ""
+description: "2024 牛客暑假多校训练营 Day2 的补题记录，整理 Floor Tiles、MST 等题目的分析与实现。"
 date: "2024-07-19T19:06:03+08:00"
 draft: true
 showHeroImage: false

@@ -1,6 +1,6 @@
 ---
 title: "关键渲染路径（CRP）的详细步骤"
-description: ""
+description: "关键渲染路径笔记，梳理 DOM、CSSOM、渲染树、布局、绘制和合成的完整流程及优化方向。"
 date: "2025-10-09T02:17:10+08:00"
 draft: true
 showHeroImage: false

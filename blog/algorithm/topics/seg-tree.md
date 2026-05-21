@@ -1,6 +1,6 @@
 ---
 title: "线段树模板"
-description: ""
+description: "线段树模板笔记，整理线段树的基本结构、建树和常用查询修改实现。"
 date: "2024-01-06T21:53:21+08:00"
 draft: true
 showHeroImage: false

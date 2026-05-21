@@ -1,6 +1,6 @@
 ---
 title: "JavaScript 链式调用设计模式 | Vue举例"
-description: ""
+description: "JavaScript 链式调用设计笔记，以 Vue createApp 和 Promise 为例讲解链式 API 的实现方式。"
 date: "2025-03-17T09:26:02+08:00"
 draft: true
 showHeroImage: false

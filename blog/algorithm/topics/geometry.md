@@ -1,6 +1,6 @@
 ---
 title: "计算几何模板"
-description: ""
+description: "计算几何模板笔记，整理二维几何中的点线表示、距离旋转、点积叉积以及判等判交求交方法。"
 date: "2024-03-09T21:54:39+08:00"
 draft: true
 showHeroImage: false

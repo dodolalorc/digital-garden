@@ -1,6 +1,6 @@
 ---
 title: "🎈2025牛客暑寒假多校训练营Day3（完結）"
-description: ""
+description: "2025 牛客寒假多校训练营 Day3 的完结补题记录，整理博弈、质数手串和 Notepad 等题目的解法。"
 date: "2025-02-16T08:53:02+08:00"
 draft: true
 showHeroImage: false

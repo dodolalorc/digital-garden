@@ -1,6 +1,6 @@
 ---
 title: "🧪CS-APP Datalab"
-description: ""
+description: "CS:APP Data Lab 实验记录，整理环境测评、单元测试命令和各个 bit-level 函数的实现。"
 date: "2024-07-04T20:49:31+08:00"
 draft: true
 showHeroImage: false

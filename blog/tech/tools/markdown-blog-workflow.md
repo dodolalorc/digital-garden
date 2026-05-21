@@ -1,6 +1,6 @@
 ---
 title: "使用 Obsidian + GitHub Actions + GitHub Pages 搭建内容发布流"
-description: ""
+description: "Obsidian、GitHub Actions 与 GitHub Pages 内容发布流笔记，整理多个仓库之间的同步与部署脚本。"
 date: "2026-05-14T20:05:30+08:00"
 draft: true
 showHeroImage: false

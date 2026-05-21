@@ -1,6 +1,6 @@
 ---
 title: "Intersection Observer API 监听是否进入了可视区域"
-description: ""
+description: "Intersection Observer API 学习笔记，介绍观察器配置、回调机制、懒加载和元素入场动画等用法。"
 date: "2025-09-17T17:53:56+08:00"
 draft: true
 showHeroImage: false

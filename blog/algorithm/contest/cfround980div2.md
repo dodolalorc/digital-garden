@@ -1,6 +1,6 @@
 ---
 title: "💭Codeforces Round 980 (Div. 2)"
-description: ""
+description: "Codeforces Round 980 Div.2 的补题记录，整理利率、买柠檬水、数组拼接和跳跃等题目的思路与代码。"
 date: "2024-11-26T14:28:27+08:00"
 draft: true
 showHeroImage: false

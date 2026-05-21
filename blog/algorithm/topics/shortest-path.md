@@ -1,6 +1,6 @@
 ---
 title: "最短路问题（Dijkstra + SPFA + Floyd）"
-description: ""
+description: "最短路专题笔记，整理 Dijkstra、SPFA、Floyd 和 Bellman-Ford 等算法的思路与实现。"
 date: "2023-12-23T16:08:47+08:00"
 draft: true
 showHeroImage: false

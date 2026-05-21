@@ -1,6 +1,6 @@
 ---
 title: "💭Codeforces Round 932(div2)"
-description: ""
+description: "Codeforces Round 932 Div.2 的补题记录，围绕 MAC 系列题目整理字符串、数组与考试题的解法。"
 date: "2024-03-13T12:26:06+08:00"
 draft: true
 showHeroImage: false

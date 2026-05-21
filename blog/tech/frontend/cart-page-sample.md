@@ -1,6 +1,6 @@
 ---
 title: "购物车页面制作教程（包含分页设计）"
-description: ""
+description: "购物车页面制作教程，围绕需求分析、整体布局、购物车列表和分页设计整理实现思路。"
 date: "2024-07-06T19:16:27+08:00"
 draft: true
 showHeroImage: false

@@ -1,6 +1,6 @@
 ---
 title: "在 quartz 主题中给博客添加封面首图"
-description: ""
+description: "记录在 Quartz 主题中为博客添加封面首图的实现步骤，涵盖插件结构和组件结构改造。"
 date: "2025-07-28T01:35:30+08:00"
 draft: true
 showHeroImage: false

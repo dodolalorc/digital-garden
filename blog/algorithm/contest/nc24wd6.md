@@ -1,6 +1,6 @@
 ---
 title: "🎉2024牛客寒假营6||补题"
-description: ""
+description: "2024 牛客寒假营第 6 场补题记录，记录宇宙终结、爱恨纠葛、心绪解剖和友谊套路等题解。"
 date: "2024-02-26T19:54:36+08:00"
 draft: true
 showHeroImage: false

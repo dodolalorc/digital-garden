@@ -1,6 +1,6 @@
 ---
 title: "🎉2024牛客寒假营5||补题"
-description: ""
+description: "2024 牛客寒假营第 5 场补题记录，整理质数合数、数组操作和排列构造等题目的解法。"
 date: "2024-02-21T20:07:25+08:00"
 draft: true
 showHeroImage: false

@@ -1,6 +1,6 @@
 ---
 title: "DNS 查询简述"
-description: ""
+description: "DNS 查询流程笔记，用电话簿类比解释本地缓存、递归解析、迭代查询、结果缓存和连接建立。"
 date: "2025-10-09T02:24:48+08:00"
 draft: true
 showHeroImage: false

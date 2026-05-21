@@ -1,6 +1,6 @@
 ---
 title: "CSS 选择器优先级和覆盖样式"
-description: ""
+description: "CSS 优先级笔记，整理选择器权重计算、比较规则以及 !important 和深度选择器的覆盖策略。"
 date: "2025-10-03T02:34:28+08:00"
 draft: true
 showHeroImage: false

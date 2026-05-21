@@ -1,6 +1,6 @@
 ---
 title: "🦀Rust编程区块链项目 BlockChain in Rust"
-description: ""
+description: "Rust 区块链项目方案文档，整理产品目标、用户需求、技术选型、模块划分和使用手册。"
 date: "2025-03-03T15:20:51+08:00"
 draft: true
 showHeroImage: false

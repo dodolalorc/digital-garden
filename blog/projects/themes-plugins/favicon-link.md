@@ -1,6 +1,6 @@
 ---
 title: "🧩带图标的 Blog 跳转链接"
-description: ""
+description: "记录为博客跳转链接添加 favicon 图标的字段设计与实现思路，对比默认路径和 Google Favicon 服务。"
 date: "2025-08-21T01:31:51+08:00"
 draft: true
 showHeroImage: false

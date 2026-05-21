@@ -1,6 +1,6 @@
 ---
 title: "🙆‍♀️Github Action实践"
-description: ""
+description: "GitHub Actions 实践笔记，记录 SSH Key、Secrets、workflow 触发条件和私有仓库发布流程配置。"
 date: "2024-07-05T23:11:39+08:00"
 draft: true
 showHeroImage: false

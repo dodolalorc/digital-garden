@@ -1,6 +1,6 @@
 ---
 title: "💭Codeforces Round 990 (Div. 2)"
-description: ""
+description: "Codeforces Round 990 Div.2 的补题记录，记录拼图、字符替换和列交换路径题的分析与实现。"
 date: "2024-12-05T19:27:40+08:00"
 draft: true
 showHeroImage: false

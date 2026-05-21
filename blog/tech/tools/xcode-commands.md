@@ -1,6 +1,6 @@
 ---
 title: "💻常用 xcode 使用命令"
-description: ""
+description: "Xcode 常用命令笔记，整理安装多版本 Xcode、license、xcode-select 路径切换和验证命令。"
 date: "2025-08-02T00:20:02+08:00"
 draft: true
 showHeroImage: false

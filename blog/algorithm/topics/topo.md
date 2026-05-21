@@ -1,6 +1,6 @@
 ---
 title: "拓扑排序"
-description: ""
+description: "拓扑排序学习笔记，整理算法思路、实现流程和基础代码模板。"
 date: "2024-01-05T14:20:41+08:00"
 draft: true
 showHeroImage: false

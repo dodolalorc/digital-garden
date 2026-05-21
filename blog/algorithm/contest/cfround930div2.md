@@ -1,6 +1,6 @@
 ---
 title: "💭Codeforces Round 930(div2)"
-description: ""
+description: "Codeforces Round 930 Div.2 的补题记录，记录 Shuffle Party、Binary Path 和 Bitwise Operation Wizard 的解题过程。"
 date: "2024-03-13T12:26:38+08:00"
 draft: true
 showHeroImage: false

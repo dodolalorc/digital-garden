@@ -1,6 +1,6 @@
 ---
 title: "前端流量控制常用手段"
-description: ""
+description: "前端流量控制笔记，整理防抖、节流、请求队列等常见手段的实现方式和注意事项。"
 date: "2025-03-17T11:40:19+08:00"
 draft: true
 showHeroImage: false

@@ -1,6 +1,6 @@
 ---
 title: "线段树专题练习"
-description: ""
+description: "线段树专题练习记录，围绕扫描线、区间维护等题目整理题意、思路和代码。"
 date: "2024-08-16T22:43:59+08:00"
 draft: true
 showHeroImage: false

@@ -1,6 +1,6 @@
 ---
 title: "💭Codeforces Round 931(div2)"
-description: ""
+description: "Codeforces Round 931 Div.2 的补题记录，整理极值构造、硬币问题和交互找矿题的思路与代码。"
 date: "2024-03-13T12:26:22+08:00"
 draft: true
 showHeroImage: false

@@ -1,6 +1,6 @@
 ---
 title: "图论基础||存储图||DFS、BFS(图论)"
-description: ""
+description: "图论基础笔记，介绍图的定义、存储方式以及 DFS、BFS 等基础遍历方法。"
 date: "2024-01-06T14:15:17+08:00"
 draft: true
 showHeroImage: false

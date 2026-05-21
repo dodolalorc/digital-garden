@@ -1,6 +1,6 @@
 ---
 title: "刷题记录||线性动态规划"
-description: ""
+description: "线性动态规划刷题记录，整理数字三角形、导弹拦截等题目的状态转移与参考代码。"
 date: "2024-03-09T21:47:13+08:00"
 draft: true
 showHeroImage: false

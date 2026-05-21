@@ -1,6 +1,6 @@
 ---
 title: "八股文短代码 Coding 篇"
-description: ""
+description: "前端手写代码笔记，整理千分位格式化、深浅拷贝、new、柯里化和 Promise 封装 AJAX 等常见题。"
 date: "2025-03-13T14:08:19+08:00"
 draft: true
 showHeroImage: false

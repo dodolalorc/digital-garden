@@ -1,6 +1,6 @@
 ---
 title: "💭Codeforces Round 927(div3)"
-description: ""
+description: "Codeforces Round 927 Div.3 的补题记录，涵盖 Thorns and Coins、Chaya Calendar、LR-remainders 和 Card Game 的解法整理。"
 date: "2024-02-29T14:47:05+08:00"
 draft: true
 showHeroImage: false

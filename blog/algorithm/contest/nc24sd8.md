@@ -1,6 +1,6 @@
 ---
 title: "🫟2024牛客暑假多校训练营Day8||补题"
-description: ""
+description: "2024 牛客暑假多校训练营 Day8 的补题记录，整理 Haitang and Game 与 Haitang and Ava 的思路和代码。"
 date: "2024-08-09T00:26:32+08:00"
 draft: true
 showHeroImage: false

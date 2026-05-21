@@ -1,6 +1,6 @@
 ---
 title: "💭Codeforces Round 933(div3)"
-description: ""
+description: "Codeforces Round 933 Div.3 的补题记录，整理 Rudolf 系列题目的计数、模拟和字符串处理思路。"
 date: "2024-03-13T12:25:46+08:00"
 draft: true
 showHeroImage: false

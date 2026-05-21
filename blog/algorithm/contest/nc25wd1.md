@@ -1,6 +1,6 @@
 ---
 title: "🎈2025牛客暑寒假多校训练营Day1（完結）"
-description: ""
+description: "2025 牛客寒假多校训练营 Day1 的完结补题记录，整理多题的题意、思路和不同实现方案。"
 date: "2025-01-23T12:58:36+08:00"
 draft: true
 showHeroImage: false

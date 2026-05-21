@@ -1,6 +1,6 @@
 ---
 title: "一些回溯相关的刷题记录"
-description: ""
+description: "回溯专题刷题笔记，从四色定理背景引入，整理回溯法思想、适用场景和例题训练。"
 date: "2024-01-03T11:45:58+08:00"
 draft: true
 showHeroImage: false
