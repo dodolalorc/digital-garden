@@ -2,7 +2,7 @@
 title: "🫟2024牛客暑假多校训练营Day2||补题"
 description: "2024 牛客暑假多校训练营 Day2 的补题记录，整理 Floor Tiles、MST 等题目的分析与实现。"
 date: "2024-07-19T19:06:03+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -26,22 +26,25 @@ sidebar:
 
 #### 数据范围
 
-* $1\leq T\leq 10^5$
-* $1\leq N,M\leq 800$
-* $1\leq K \leq 2\times N\times M$
+- $1\leq T\leq 10^5$
+- $1\leq N,M\leq 800$
+- $1\leq K \leq 2\times N\times M$
 
 ### 思路
 
 边缘一圈的点所在的线一定不是一个环，所以最少的线数相当于都是`A型`或`B型`时的线数，也就是$N\times M$个，若要比$N\times M$个多，则多的部分只能是图形中环的数目，贪心的让所有的环最小，则能构造出最多的环，最小的环如例图中一样，当平铺的方式是
+
 $$
 \begin{aligned}
 AB\\
 BA
 \end{aligned}
 $$
+
 时，形成的环是最小的。
 
 同时注意到，成环的四块砖块是可以共用的，也就是说在：
+
 $$
 \begin{aligned}
 ABAB\\
@@ -49,6 +52,7 @@ BABA\\
 ABAB
 \end{aligned}
 $$
+
 中有**3**个环。
 
 首先构造成环数量最多的$N\times M$，在输出时记录当前已经拥有多少个环，若超过所需的数量则不再输出可以成环的砖块类型。
@@ -104,8 +108,6 @@ void solve() {
 }
 ```
 
-
-
 ## B-MST
 
 ### 题意
@@ -116,10 +118,10 @@ void solve() {
 
 #### 数据范围
 
-* $2\leq n\leq 10^5$
-* $1\leq m,q\leq 10^5$
-* $1\leq w_i \leq 10^9$
-* $\sum k_i\leq 10^5$
+- $2\leq n\leq 10^5$
+- $1\leq m,q\leq 10^5$
+- $1\leq w_i \leq 10^9$
+- $\sum k_i\leq 10^5$
 
 ### 思路
 
@@ -241,7 +243,7 @@ int main() {
 
 #### 数据范围
 
-* $1\leq n\leq 10^6$
+- $1\leq n\leq 10^6$
 
 ### 思路
 
@@ -295,8 +297,6 @@ int main() {
 }
 ```
 
-
-
 ## E-GCD VS XOR
 
 有人卡签到。。。TAT
@@ -307,8 +307,8 @@ int main() {
 
 #### 数据范围
 
-* $1\leq t\leq 10^4$
-* $1\leq x\leq 10^{18}$
+- $1\leq t\leq 10^4$
+- $1\leq x\leq 10^{18}$
 
 ### 思路
 
@@ -352,8 +352,8 @@ int main() {
 
 #### 数据范围
 
-* $1\leq n\leq 2\times 10^5$
-* $-10^5\leq x,y\leq 10^5$
+- $1\leq n\leq 2\times 10^5$
+- $-10^5\leq x,y\leq 10^5$
 
 ### 思路
 
@@ -407,23 +407,23 @@ void solve() {
 
 #### 数据范围
 
-* $1\leq a_i\leq n\leq 3000$
+- $1\leq a_i\leq n\leq 3000$
 
 ### 思路
 
 每个数有两个坐标，假设数$i$的坐标为$l_i$和$r_i$，预处理出以数$i$为一个操作时的分数$f(i)$，那么对于区间$[l_i,r_i]$，可以计算其中每个数的贡献（即$i$），若出现满足$l_i\lt l_j \lt r_j\lt r_i $，则用$max(i,j)$代替区间$[l_j,r_j]$的贡献。
 
 计算区间$[l_i,k]$的最大分数$g(k)$，$g(k)$符合：
+
 $$
-g(k)= 
+g(k)=
 \begin{cases}
 max(g(k-1) + i,g(l_j-1)+f(j)),& (k=r_j \quad and \quad l_i \lt l_j)\\
-g(k-1) + i & 
+g(k-1) + i &
 \end{cases}
 $$
+
 直到$k=r_i$，得到$f(i)=g(r_i)$。
-
-
 
 ### 代码
 
@@ -443,7 +443,7 @@ void solve() {
 
     // 用0包裹数组，取0这一对不影响结果，但是方便统计最佳分数
     a[1] = a[2 * n + 2] = 0ll;
-    idx[0] = { 1,2 * n + 2,2 * n + 2 }; 
+    idx[0] = { 1,2 * n + 2,2 * n + 2 };
 
     vector<pair<plr, ll>>idv;
     for (auto i : idx) {
@@ -472,10 +472,3 @@ void solve() {
     cout << f[0] << endl;
 }
 ```
-
-
-
-
-
-
-

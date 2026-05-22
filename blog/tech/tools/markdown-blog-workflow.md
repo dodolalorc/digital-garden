@@ -2,7 +2,7 @@
 title: "使用 Obsidian + GitHub Actions + GitHub Pages 搭建内容发布流"
 description: "Obsidian、GitHub Actions 与 GitHub Pages 内容发布流笔记，整理多个仓库之间的同步与部署脚本。"
 date: "2026-05-14T20:05:30+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -60,7 +60,7 @@ jobs:
     permissions:
       contents: read
     env:
-      TARGET_REPO: <target_repo>  # 换成你的目标构建仓库
+      TARGET_REPO: <target_repo> # 换成你的目标构建仓库
       TARGET_BRANCH: main
       TARGET_PATH: src/content # 换成目标构建仓库会读取md内容的位置，从根目录开始
     steps:

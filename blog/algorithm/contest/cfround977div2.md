@@ -2,7 +2,7 @@
 title: "💭Codeforces Round 977 (Div. 2, based on COMPFEST 16 - Final Round)"
 description: "Codeforces Round 977 Div.2 的补题记录，包含 Meaning Mean、Maximize Mex 和调整演示顺序等题目的解法笔记。"
 date: "2024-10-25T14:57:19+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -221,7 +221,5 @@ void solve() {
 - $1\leq u_i\lt w_i\leq n;1\leq w_i\leq 10^9$
 
 ## 思路
-
-
 
 ## 参考代码

@@ -2,7 +2,7 @@
 title: "🔑Git环境配置和SSH公钥设置"
 description: "Git 环境配置笔记，整理 SSH 密钥生成、Git 全局配置、换行符策略、默认分支和别名设置。"
 date: "2025-08-02T01:31:10+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true

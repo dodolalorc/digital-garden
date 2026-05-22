@@ -2,7 +2,7 @@
 title: "CSS 选择器优先级和覆盖样式"
 description: "CSS 优先级笔记，整理选择器权重计算、比较规则以及 !important 和深度选择器的覆盖策略。"
 date: "2025-10-03T02:34:28+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -69,8 +69,8 @@ p.text { color: green; }
 ```css
 /* 提升单个属性的优先级 */
 .text {
-    color: red !important; /* 强制覆盖其他color声明 */
-    font-size: 16px; /* 正常优先级 */
+  color: red !important; /* 强制覆盖其他color声明 */
+  font-size: 16px; /* 正常优先级 */
 }
 ```
 
@@ -79,22 +79,22 @@ p.text { color: green; }
 ```css
 /* 1. 覆盖第三方库样式 */
 .third-party-component {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 /* 2. 工具类/工具样式 */
 .hidden {
-    display: none !important;
+  display: none !important;
 }
 
 .text-center {
-    text-align: center !important;
+  text-align: center !important;
 }
 
 /* 3. 重置浏览器默认样式 */
 button {
-    border: none !important;
-    background: none !important;
+  border: none !important;
+  background: none !important;
 }
 ```
 

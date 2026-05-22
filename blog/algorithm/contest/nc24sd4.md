@@ -2,7 +2,7 @@
 title: "🫟2024牛客暑假多校训练营Day4||补题"
 description: "2024 牛客暑假多校训练营 Day4 的补题记录，整理 LCT、Sort4、Good Tree 和 Horse Drinks Water 等题目。"
 date: "2024-07-31T15:55:48+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -20,8 +20,8 @@ sidebar:
 
 #### 数据范围
 
-* $2\leq n\leq 10^6$
-* $1\leq a_i,b_i,c_i\leq n,a_i\neq b_i$
+- $2\leq n\leq 10^6$
+- $1\leq a_i,b_i,c_i\leq n,a_i\neq b_i$
 
 ### 思路
 
@@ -70,8 +70,8 @@ void solve() {
 
 #### 数据范围
 
-* $1\leq t\leq 10^5$
-* $1\leq n\leq 10^6$
+- $1\leq t\leq 10^5$
+- $1\leq n\leq 10^6$
 
 ### 思路
 
@@ -137,8 +137,8 @@ void solve() {
 
 #### 数据范围
 
-* $1\leq t\leq 10^5$
-* $1\leq x \leq 10^{18}$
+- $1\leq t\leq 10^5$
+- $1\leq x \leq 10^{18}$
 
 ### 思路
 
@@ -185,8 +185,8 @@ void solve() {
 
 #### 数据范围
 
-* $1\leq t\leq 10^5$
-* $0\leq x_G,y_G,x_T,u_T\leq 10^9$
+- $1\leq t\leq 10^5$
+- $0\leq x_G,y_G,x_T,u_T\leq 10^9$
 
 ### 思路
 
@@ -222,9 +222,9 @@ void solve() {
 
 #### 数据范围
 
-* $1\leq t\leq 5\times 10^5$
-* $1\leq n\leq 10^5$
-* $0\leq a_i\leq 10^{16}$
+- $1\leq t\leq 5\times 10^5$
+- $1\leq n\leq 10^5$
+- $0\leq a_i\leq 10^{16}$
 
 ### 思路
 
@@ -266,7 +266,7 @@ $n$个人从左到右排成一排，编号从$1$到$n-1$，这$n$个人之间有
 
 #### 数据范围
 
-* $1\leq n,m \leq 10^6$
+- $1\leq n,m \leq 10^6$
 
 ### 思路
 
@@ -307,16 +307,3 @@ void solve() {
     cout << ans << "\n";
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-

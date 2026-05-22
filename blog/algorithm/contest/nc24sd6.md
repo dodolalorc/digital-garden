@@ -2,7 +2,7 @@
 title: "🫟2024牛客暑假多校训练营Day6||补题"
 description: "2024 牛客暑假多校训练营 Day6 的补题记录，整理 Cake 系列题和 Puzzle: Wagiri 的解法。"
 date: "2024-08-05T10:15:52+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -20,7 +20,7 @@ sidebar:
 
 #### 数据范围
 
-* $1\leq n\leq 2\times 10^5$
+- $1\leq n\leq 2\times 10^5$
 
 ### 思路
 
@@ -45,7 +45,7 @@ struct status {
 
 vector<vector<edge>>tree;
 
-double dfs(int p, int fr, int who, status now, double mx) { 
+double dfs(int p, int fr, int who, status now, double mx) {
     // mx为路径中0比例最大的前缀中0的比例
     if (tree[p].size() == 1 && fr) {
         return mx;
@@ -90,8 +90,8 @@ void solve() {
 
 #### 数据范围
 
-* $1\leq n\leq 10^6$
-* $2\leq k\leq n-2$
+- $1\leq n\leq 10^6$
+- $2\leq k\leq n-2$
 
 ### 思路
 
@@ -120,10 +120,10 @@ void solve() {
 
 #### 数据范围
 
-* $1\leq n\leq 10^5$
-* $n-1\leq m\leq 2\times 10^5$
-* $1\leq u_i,v_i\leq n$
-* $t_i\in \\{"Lun","Qie"\\}$
+- $1\leq n\leq 10^5$
+- $n-1\leq m\leq 2\times 10^5$
+- $1\leq u_i,v_i\leq n$
+- $t_i\in \\{"Lun","Qie"\\}$
 
 ### 思路
 
@@ -265,16 +265,16 @@ void solve() {
 
 每次抽卡的结果是`3星`、`4星`、`5星非Up`、`5星Up`四种结果中的一种。同时也符合如下的要求：
 
-* 连续10抽中不会全是`3星`。
-* 连续90抽中至少有一个是`5星非Up`或`5星Up`
-* 每两个连续的`5星`中至少有一个是`5星非Up`
+- 连续10抽中不会全是`3星`。
+- 连续90抽中至少有一个是`5星非Up`或`5星Up`
+- 每两个连续的`5星`中至少有一个是`5星非Up`
 
 给出一个抽卡结果序列，判断该抽卡结果是否符合上述规则。
 
 #### 数据范围
 
-* $1\leq T\leq 10^5$
-* $1\leq |S|\leq 10^6$
+- $1\leq T\leq 10^5$
+- $1\leq |S|\leq 10^6$
 
 ### 思路
 
@@ -329,7 +329,7 @@ void solve() {
 
 #### 数据范围
 
-* $n\leq 5\times 10^5$
+- $n\leq 5\times 10^5$
 
 ### 思路
 
@@ -470,7 +470,7 @@ void solve() {
         cout << -1 << "\n";
         return;
     }
-    
+
     if (tmp.size() >= 2) { // 只有两个菊花时要交叉放
         auto [v1, v2] = tmp[0];
         auto [w1, w2] = tmp[1];
@@ -525,23 +525,3 @@ int main() {
     return 0;
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

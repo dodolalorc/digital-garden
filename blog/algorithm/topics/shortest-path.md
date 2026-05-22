@@ -2,7 +2,7 @@
 title: "最短路问题（Dijkstra + SPFA + Floyd）"
 description: "最短路专题笔记，整理 Dijkstra、SPFA、Floyd 和 Bellman-Ford 等算法的思路与实现。"
 date: "2023-12-23T16:08:47+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -25,7 +25,7 @@ sidebar:
 
 ### Floyd算法&Bellman-Ford算法
 
-* ==Floyd算法==
+- ==Floyd算法==
 
 这个算法就是刚刚思维里的算法的朴素实现了，动态规划思维，不断去尝试增加节点来找最小值。伪代码如下：
 
@@ -132,7 +132,7 @@ int main() {
 
 	// 初始化head
 	memset(head, -1, sizeof(head));
-	
+
 	// 读入数据
 	for (int i = 0;i < m;i++) {
 		int fi, ti, wi;
@@ -150,7 +150,7 @@ int main() {
 	for (int i = 1;i <= n;i++)
 		cout << dist[i] << " ";
 	cout << endl;
-	// ->0 4 3 5 10 6 4 
+	// ->0 4 3 5 10 6 4
 
 	return 0;
 }
@@ -195,7 +195,7 @@ v7((v7))-. -9 .->v7((v7))
 同样的程序跑出来的结果是：
 0 4 -35 -49 -35 -45 -50
 原来的结果：
-0 4 3 5 10 6 4 
+0 4 3 5 10 6 4
 ```
 
 思考：不管有没有负权环，我们得到的其实都是合理的最短路径，但是存在负权环会使得到某些点的最短距离一定会减少（加上一个负数肯定变小，而我们选择的是较小的那个路径），所以有负权环时，最短路径(假设路径上的点的数量没有限制)其实可以无限短，我们先前用暴力循环所有的点来保证所有的dist数组能够更新到最佳，那么假如有负权环在其中，dist数组没有最佳状态，所以我们简单的多循环一边，假如没有负权环，再多循环一边并不会改变dist数组里的值，如果有负权环，dist数组里一定有值改变。我们试试看：
@@ -321,7 +321,7 @@ struct cmp {
 	// // 重写仿函数法：
 	bool operator ()(Polar a, Polar b) {
 		// 重载()运算符，使其成为一个仿函数
-		return a.dist > b.dist;	
+		return a.dist > b.dist;
 	}
 };
 // priority_queue<Polar, vector<Polar>, cmp> q;
@@ -330,15 +330,15 @@ bool visited[maxn];
 void Dij(int vn) {
 	fill(dist + 1, dist + n + 1, INF);
 	dist[vn] = 0;
-	
+
 	q.push(Polar(0, vn));
 	while (!q.empty()) {
 		int pid = q.top().id;
 		q.pop();
-		if (visited[pid]) 
+		if (visited[pid])
 			// 若已经在队列中
 			continue;
-		
+
 		visited[pid] = true;
 		for (int ei = head[pid], to = Edge[ei].to;ei != -1;ei = Edge[ei].next, to = Edge[ei].to) {
 			if (dist[pid] + Edge[ei].w < dist[to]){
@@ -347,7 +347,7 @@ void Dij(int vn) {
                	if (!visited[to])
 				q.push(Polar(dist[to], to));
 			}
-			
+
 		}
 	}
 }
@@ -357,7 +357,7 @@ int main() {
 
 	// 初始化head
 	memset(head, -1, sizeof(head));
-    
+
 	// 读入数据
 	for (int i = 0;i < m;i++) {
 		int fi, ti, wi;
@@ -454,16 +454,15 @@ if (dist[pid] + Edge[ei].w < dist[to]){
 >
 > ==提示==
 >
-> 【数据范围】    
+> 【数据范围】  
 > 对于 $20\%$ 的数据：$1\le n \le 5$，$1\le m \le 15$；  
-> 对于 $40\%$ 的数据：$1\le n \le 100$，$1\le m \le 10^4$；   
-> 对于 $70\%$ 的数据：$1\le n \le 1000$，$1\le m \le 10^5$；   
+> 对于 $40\%$ 的数据：$1\le n \le 100$，$1\le m \le 10^4$；  
+> 对于 $70\%$ 的数据：$1\le n \le 1000$，$1\le m \le 10^5$；  
 > 对于 $100\%$ 的数据：$1 \le n \le 10^4$，$1\le m \le 5\times 10^5$，$1\le u,v\le n$，$w\ge 0$，$\sum w< 2^{31}$，保证数据随机。
 >
 > **Update 2022/07/29：两个点之间可能有多条边，敬请注意。**
 >
 > 对于真正 $100\%$ 的数据，请移步 [P4779](https://www.luogu.org/problemnew/show/P4779)。请注意，该题与本题数据范围略有不同。
->
 >
 > 样例说明：
 >
@@ -523,7 +522,7 @@ int main() {
 
 	// 初始化head
 	memset(head, -1, sizeof(head));
-	
+
 	// 读入数据
 	for (int i = 0;i < m;i++) {
 		ll fi, ti, wi;
@@ -670,7 +669,7 @@ int main() {
 
 	// 初始化head
 	memset(head, -1, sizeof(head));
-    
+
 	// 读入数据
 	for (int i = 0;i < m;i++) {
 		int fi, ti, wi;

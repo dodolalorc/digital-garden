@@ -2,7 +2,7 @@
 title: "🎈2025牛客暑寒假多校训练营Day4"
 description: "2025 牛客寒假多校训练营 Day4 的补题记录，整理平衡字符串、回文拼接和龙息等题目的思路。"
 date: "2025-03-02T18:46:04+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -43,6 +43,7 @@ sidebar:
 ### 思路
 
 Easy版本的数据范围较小，直接dfs统计即可。
+
 ### 代码
 
 ```cpp

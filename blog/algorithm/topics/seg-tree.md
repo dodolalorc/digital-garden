@@ -2,7 +2,7 @@
 title: "线段树模板"
 description: "线段树模板笔记，整理线段树的基本结构、建树和常用查询修改实现。"
 date: "2024-01-06T21:53:21+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -11,8 +11,6 @@ sidebar:
   toc: true
   relatedPosts: true
 ---
-
-
 
 ### 线段树(segment tree)
 
@@ -70,8 +68,8 @@ sidebar:
 >
 > ==提示==
 >
-> 对于 $30\%$ 的数据：$n \le 8$，$m \le 10$。 
-> 对于 $70\%$ 的数据：$n \le {10}^3$，$m \le {10}^4$。 
+> 对于 $30\%$ 的数据：$n \le 8$，$m \le 10$。
+> 对于 $70\%$ 的数据：$n \le {10}^3$，$m \le {10}^4$。
 > 对于 $100\%$ 的数据：$1 \le n, m \le {10}^5$。
 >
 > 保证任意时刻数列中所有元素的绝对值之和 $\le {10}^{18}$。
@@ -79,9 +77,6 @@ sidebar:
 > **【样例解释】**
 >
 > ![](https://cdn.luogu.com.cn/upload/pic/2251.png)
->
-
-
 
 #### 线段树的建立
 
@@ -136,7 +131,7 @@ void update(ll l, ll r, ll curl, ll curr, ll addnum, ll curpos) {
 	else if (curl >= l && curr <= r) {
 		// 当前区间完全包含在大区间里
 		tree[curpos] += (curr - curl + 1) * addnum;
-		
+
 		if (curl != curr)
 			// 不是叶子节点，则标记它
 			mark[curpos] += addnum;
@@ -147,7 +142,7 @@ void update(ll l, ll r, ll curl, ll curr, ll addnum, ll curpos) {
 		// 有交集但不包含，则需要再分出包含的部分和不包含的部分进行update
 
 		// 因为当前区间点已经不能实现代表它下面的所有小弟啦，所以我们把原来有的标记往下传递一层，也就是分开，直到分到区间都是:要么都有变化，要么都不变化
-		
+
 		// 将标记点向下传递
 		mark[curpos * 2] += mark[curpos];
 		mark[curpos * 2 + 1] += mark[curpos];
@@ -259,7 +254,7 @@ void update(ll l, ll r, ll curl, ll curr, ll addnum, ll curpos) {
 	else if (curl >= l && curr <= r) {
 		// 当前区间完全包含在大区间里
 		tree[curpos] += (curr - curl + 1) * addnum;
-		
+
 		if (curl != curr)
 			// 不是叶子节点，则标记它
 			mark[curpos] += addnum;
@@ -270,7 +265,7 @@ void update(ll l, ll r, ll curl, ll curr, ll addnum, ll curpos) {
 		// 有交集但不包含，则需要再分出包含的部分和不包含的部分进行update
 
 		// 因为当前区间点已经不能实现代表它下面的所有小弟啦，所以我们把原来有的标记往下传递一层，也就是分开，直到分到区间都是:要么都有变化，要么都不变化
-		
+
 		// 将标记点向下传递
 		mark[curpos * 2] += mark[curpos];
 		mark[curpos * 2 + 1] += mark[curpos];
@@ -328,12 +323,12 @@ int main() {
 	// 读入数据
 	ll n, m;cin >> n >> m;
 	for (ll i = 1;i <= n;i++)cin >> a[i];
-	
+
 	// 用数据建树，从节点1（也就是根节点）开始递归
 	buildtree(1, n, 1);
 
 	while (m--) {
-		
+
 		int how;cin >> how;
 		if (how == 1) {
 			ll x, y, k;cin >> x >> y >> k;
@@ -348,4 +343,3 @@ int main() {
 	return 0;
 }
 ```
-

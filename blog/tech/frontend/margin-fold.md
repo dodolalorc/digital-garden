@@ -2,7 +2,7 @@
 title: "Margin 折叠"
 description: "CSS Margin 折叠笔记，说明折叠产生原因、常见场景、负 margin 规则和阻止折叠的方法。"
 date: "2025-10-03T04:31:02+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true

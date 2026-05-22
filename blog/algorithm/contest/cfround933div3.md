@@ -2,7 +2,7 @@
 title: "💭Codeforces Round 933(div3)"
 description: "Codeforces Round 933 Div.3 的补题记录，整理 Rudolf 系列题目的计数、模拟和字符串处理思路。"
 date: "2024-03-13T12:25:46+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -11,8 +11,6 @@ sidebar:
   toc: true
   relatedPosts: true
 ---
-
-
 
 # A-Rudolf and the Ticket
 
@@ -65,9 +63,9 @@ void solve() {
 
 选中一个索引$i(2\le i\le n-1)$：
 
-* $a_{i-1}=a_{i-1}-1$
-* $a_i=a_i-2$
-* $a_{i+1}=a_{i+1}-1$​
+- $a_{i-1}=a_{i-1}-1$
+- $a_i=a_i-2$
+- $a_{i+1}=a_{i+1}-1$​
 
 询问是否可以通过这个运算使得所有元素变为0
 
@@ -239,7 +237,7 @@ $m(3\le m\le 2\times 10^5)$
 
 对每一行进行DP，可以获得每一行建桥的最小花费。再对其求前缀和，找到总花费最小的连续$k$段。
 
-进行DP状态转移时，需要优先选中距离不大于$d$的桥墩点中，花费最小的桥墩。 
+进行DP状态转移时，需要优先选中距离不大于$d$的桥墩点中，花费最小的桥墩。
 
 ## 参考代码
 
@@ -302,4 +300,3 @@ void solve() {
     cout << ans << endl;
 }
 ```
-

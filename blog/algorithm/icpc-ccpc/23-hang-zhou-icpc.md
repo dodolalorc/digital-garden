@@ -2,7 +2,7 @@
 title: "2023杭州ICPC区域赛"
 description: "2023 杭州 ICPC 区域赛补题记录，整理 Snake Move 和 Mysterious Tree 的题意、思路与代码。"
 date: "2024-11-23T18:51:44+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true

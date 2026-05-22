@@ -2,7 +2,7 @@
 title: "2024吉林省赛补题记录"
 description: "2024 吉林省赛补题记录，包含 The Easiest Problem、Recharge、Platform Game 和 Parallel Lines 的解法整理。"
 date: "2024-07-05T14:30:27+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -279,5 +279,3 @@ int main() {
 $1 \leq n \leq 10^6$
 
 ### 思路
-
-

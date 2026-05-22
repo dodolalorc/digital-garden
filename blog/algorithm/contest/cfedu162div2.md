@@ -2,7 +2,7 @@
 title: "💭Educational Codeforces Round 162(div2)"
 description: "Educational Codeforces Round 162 Div.2 的补题记录，整理 Moving Chips、Monsters Attack 和 Find B 的题意、思路与参考代码。"
 date: "2024-02-29T14:57:07+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true

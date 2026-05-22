@@ -2,7 +2,7 @@
 title: "🎉2024牛客寒假营1||补题"
 description: "2024 牛客寒假营第 1 场补题记录，整理 DFS 搜索、贪心、分配与模拟等题目的解法。"
 date: "2024-02-02T20:30:40+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -11,10 +11,6 @@ sidebar:
   toc: true
   relatedPosts: true
 ---
-
-
-
-
 
 ## A-DFS搜索
 
@@ -242,8 +238,6 @@ void solve() {
 }
 ```
 
-
-
 ## F-鸡数题
 
 ### 题意
@@ -261,7 +255,6 @@ void solve() {
 
 $1\leq n,m\leq 10^5$
 
-
 ### 思路
 
 条件3说明，在2进制下的$2^n-1$（也就是数$(\overbrace{11\dots111}^n)_2$）每一位1都至少在$a_1~a_m$中出现一次，数组a的大小为m，联合条件4说明每个数位上的1最多只能出现1次，所以问题转化为，将n个不同位置上1分配给m个数，且每个数至少有1个1。可知$n\geq m$。
@@ -269,16 +262,18 @@ $1\leq n,m\leq 10^5$
 也就是一个第二类斯特林数$n\brace m$。
 
 递推式：
+
 $$
 {n\brace k}={n-1\brace k-1}+k{n-1\brace k}
 $$
+
 边界是：${n\brace m}=[n=0]$。
 
 **通项**：
+
 $$
 {n\brace m}=\sum_{i=0}^m \frac{(-1)^{m-i}\times i^n}{i!\times (m-i)!}
 $$
-
 
 ### 参考代码
 
@@ -312,8 +307,6 @@ void solve() {
     cout << ans << '\n';
 }
 ```
-
-
 
 ## G-why买外卖
 
@@ -359,8 +352,6 @@ void solve() {
 }
 ```
 
-
-
 ## I-It's bertrand paradox. Again!
 
 ### 题意
@@ -383,7 +374,6 @@ buaa-noob的方法：
 $n=10^5$
 
 $0< x_i,y_i< 100,0< r_i\leq100$
-
 
 ### 思路
 
@@ -420,7 +410,7 @@ $v_i,w_i(0\leq v_i,w_i\leq 10^8)$
 
 ### 思路
 
-枚举m右移位后的数字，能被这个位数低于m、数位上全是1的新m覆盖的都能拿 
+枚举m右移位后的数字，能被这个位数低于m、数位上全是1的新m覆盖的都能拿
 
 状态转换：拿新筛出来的可选与原来的比较，取价值较大的那个
 
@@ -446,12 +436,10 @@ void solve() {
         }
         ans = max(ans, ansi);
     }
- 
+
     cout << ans << '\n';
 }
 ```
-
-
 
 ## L-要有光
 
@@ -460,8 +448,6 @@ void solve() {
 ![img](https://uploadfiles.nowcoder.com/images/20240121/0_1705841503979/D2B5CA33BD970F64A6301FA75AE2EB22)
 
 如图，有一点光源在轨迹L($x=c,y=0,0\leq z\leq d$)上移动，存在一宽为$2w$，高为$h$的绿墙W，和一无限大的白墙S，求投影在地面上的阴影的面积。
-
-
 
 #### 数据范围
 
@@ -499,7 +485,6 @@ $1\leq T\leq 10^5$
 
 $6\leq n\leq 10^9$
 
-
 ### 思路
 
 判断n是否是6的倍数即可，如果正好是6的倍数，那么返回时并不产生新的位置。
@@ -513,4 +498,3 @@ void solve() {
     else cout << n / 6 << '\n';
 }
 ```
-

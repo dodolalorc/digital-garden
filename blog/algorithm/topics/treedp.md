@@ -2,7 +2,7 @@
 title: "刷题记录||树形动态规划"
 description: "树形动态规划刷题记录，整理没有上司的舞会、加分二叉树和最大子树和等经典题。"
 date: "2024-03-09T21:51:07+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -14,9 +14,9 @@ sidebar:
 
 ## **👾树形动态规划**
 
-==*树形动态规划，即在树上进行的动态规划。*==
+==_树形动态规划，即在树上进行的动态规划。_==
 
-==*因为树的递归性质，树形动态规划一般都是递归求解的。*==
+==_因为树的递归性质，树形动态规划一般都是递归求解的。_==
 
 ### 🫐[P1352]没有上司的舞会
 
@@ -85,7 +85,6 @@ sidebar:
 >
 > 设一个 $n$ 个节点的二叉树 $\text{tree}$ 的中序遍历为$(1,2,3,\ldots,n)$，其中数字 $1,2,3,\ldots,n$ 为节点编号。每个节点都有一个分数（均为正整数），记第 $i$ 个节点的分数为 $d_i$，$\text{tree}$ 及它的每个子树都有一个加分，任一棵子树 $\text{subtree}$（也包含 $\text{tree}$ 本身）的加分计算方法如下：
 >
->
 > $\text{subtree}$ 的左子树的加分 $\times$ $\text{subtree}$ 的右子树的加分 $+$ $\text{subtree}$ 的根的分数。
 >
 > 若某个子树为空，规定其加分为 $1$，叶子的加分就是叶节点本身的分数。不考虑它的空子树。
@@ -93,7 +92,6 @@ sidebar:
 > 试求一棵符合中序遍历为 $(1,2,3,\ldots,n)$ 且加分最高的二叉树 $\text{tree}$。要求输出
 >
 > 1. $\text{tree}$ 的最高加分。
->
 > 2. $\text{tree}$ 的前序遍历。
 >
 > ## 输入格式
@@ -235,7 +233,7 @@ sidebar:
 >
 > **样例解释**
 >
-> ![](https://cdn.luogu.com.cn/upload/pic/86.png) 
+> ![](https://cdn.luogu.com.cn/upload/pic/86.png)
 >
 > 如图所示，共有五个结点。结点 ① 为根结点，即现场直播站，② 为一个中转站，③④⑤ 为用户端，共 $M$ 个，编号从 $N-M+1$ 到 $N$，他们为观看比赛分别准备的钱数为 $3$、$4$、$2$。
 >
@@ -298,12 +296,14 @@ sidebar:
 >
 > 一棵二叉树可以按照如下规则表示成一个由 $0$、$1$、$2$ 组成的字符序列，我们称之为“二叉树序列 $S$”：
 >
-> $$S=
+> $$
+> S=
 > \begin{cases}
 > 0& \text{表示该树没有子节点}\\
 > 1S_1& \text{表示该树有一个节点，}S_1 \text{为其子树的二叉树序列}\\
 > 2S_1S_2& \text{表示该树由两个子节点，}S_1 \text{和} S_2 \text{分别表示其两个子树的二叉树序列}
-> \end{cases}$$
+> \end{cases}
+> $$
 >
 > 例如，下图所表示的二叉树可以用二叉树序列 $S=\texttt{21200110}$ 来表示。
 >
@@ -347,9 +347,9 @@ sidebar:
 >
 > Farmer John has noticed that his cows often move between nearby fields. Taking this into account, he wants to plant enough grass in each of his fields not only for the cows situated initially in that field, but also for cows visiting from nearby fields.
 >
-> Specifically, FJ's farm consists of N fields (1 <= N <= 100,000), where some pairs of fields are connected with bi-directional trails (N-1 of them in total).  FJ has designed the farm so that between any two fields i and j, there is a unique path made up of trails connecting between i and j. Field i is home to C(i) cows, although cows sometimes move to a different field by crossing up to K trails (1 <= K <= 20).
+> Specifically, FJ's farm consists of N fields (1 <= N <= 100,000), where some pairs of fields are connected with bi-directional trails (N-1 of them in total). FJ has designed the farm so that between any two fields i and j, there is a unique path made up of trails connecting between i and j. Field i is home to C(i) cows, although cows sometimes move to a different field by crossing up to K trails (1 <= K <= 20).
 >
-> FJ wants to plant enough grass in each field i to feed the maximum number of cows, M(i), that could possibly end up in that field -- that is, the number of cows that can potentially reach field i by following at most K trails.  Given the structure of FJ's farm and the value of C(i) for each field i, please help FJ compute M(i) for every field i.
+> FJ wants to plant enough grass in each field i to feed the maximum number of cows, M(i), that could possibly end up in that field -- that is, the number of cows that can potentially reach field i by following at most K trails. Given the structure of FJ's farm and the value of C(i) for each field i, please help FJ compute M(i) for every field i.
 >
 > 给你一棵 $n$ 个点的树，点带权，对于每个节点求出距离它不超过 $k$ 的所有节点权值和 $m_i$。
 >
@@ -361,13 +361,13 @@ sidebar:
 >
 > \* Lines N+1..2N: Line N+i contains the integer C(i). (0 <= C(i) <= 1000)
 >
-> 第一行两个正整数 $n,k$。   
+> 第一行两个正整数 $n,k$。  
 > 接下来 $n-1$ 行，每行两个正整数 $u,v$，表示 $u,v$ 之间有一条边。  
 > 最后 $n$ 行，每行一个非负整数 $c_i$，表示点权。
 >
 > ## 输出格式
 >
-> \* Lines 1..N: Line i should contain the value of M(i). 
+> \* Lines 1..N: Line i should contain the value of M(i).
 >
 > 输出 $n$ 行，第 $i$ 行一个整数表示 $m_i$。
 >
@@ -376,35 +376,34 @@ sidebar:
 > ### 样例输入 #1
 >
 > ```
-> 6 2 
-> 5 1 
-> 3 6 
-> 2 4 
-> 2 1 
-> 3 2 
-> 1 
-> 2 
-> 3 
-> 4 
-> 5 
+> 6 2
+> 5 1
+> 3 6
+> 2 4
+> 2 1
+> 3 2
+> 1
+> 2
+> 3
+> 4
+> 5
 > 6
 > ```
 >
 > ### 样例输出 #1
 >
 > ```
-> 15 
-> 21 
-> 16 
-> 10 
-> 8 
+> 15
+> 21
+> 16
+> 10
+> 8
 > 11
 > ```
 >
 > ## 提示
 >
-> There are 6 fields, with trails connecting (5,1), (3,6), (2,4), (2,1), and (3,2).  Field i has C(i) = i cows.
->
+> There are 6 fields, with trails connecting (5,1), (3,6), (2,4), (2,1), and (3,2). Field i has C(i) = i cows.
 >
 > Field 1 has M(1) = 15 cows within a distance of 2 trails, etc.
 >
@@ -495,14 +494,14 @@ sidebar:
 >
 > 本题中**合法括号串**的定义如下：
 >
-> 1.	`()` 是合法括号串。
-> 2.	如果 `A` 是合法括号串，则 `(A)` 是合法括号串。
-> 3.	如果 `A`，`B` 是合法括号串，则 `AB` 是合法括号串。
+> 1. `()` 是合法括号串。
+> 2. 如果 `A` 是合法括号串，则 `(A)` 是合法括号串。
+> 3. 如果 `A`，`B` 是合法括号串，则 `AB` 是合法括号串。
 >
 > 本题中**子串**与**不同的子串**的定义如下：
 >
-> 1.	字符串 `S` 的子串是 `S` 中**连续**的任意个字符组成的字符串。`S` 的子串可用起始位置 $l$ 与终止位置 $r$ 来表示，记为 $S (l, r)$（$1 \leq l \leq r \leq |S |$，$|S |$ 表示 S 的长度）。
-> 2.	`S` 的两个子串视作不同**当且仅当**它们在 `S` 中的位置不同，即 $l$ 不同或 $r$ 不同。
+> 1. 字符串 `S` 的子串是 `S` 中**连续**的任意个字符组成的字符串。`S` 的子串可用起始位置 $l$ 与终止位置 $r$ 来表示，记为 $S (l, r)$（$1 \leq l \leq r \leq |S |$，$|S |$ 表示 S 的长度）。
+> 2. `S` 的两个子串视作不同**当且仅当**它们在 `S` 中的位置不同，即 $l$ 不同或 $r$ 不同。
 >
 > ## 题目描述
 >
@@ -667,13 +666,13 @@ sidebar:
 >
 > ## 题目描述
 >
-> 给出一棵树，要求你为树上的结点标上权值，权值可以是任意的正整数 
+> 给出一棵树，要求你为树上的结点标上权值，权值可以是任意的正整数
 >
 > 唯一的限制条件是相临的两个结点不能标上相同的权值，要求一种方案，使得整棵树的总价值最小。
 >
 > ## 输入格式
 >
-> 先给出一个数字N,代表树上有N个点,N<=10000 
+> 先给出一个数字N,代表树上有N个点,N<=10000
 >
 > 下面N-1行,代表两个点相连
 >
@@ -686,15 +685,15 @@ sidebar:
 > ### 样例输入 #1
 >
 > ```
-> 10 
-> 7 5 
-> 1 2 
-> 1 7 
-> 8 9 
-> 4 1 
-> 9 7 
-> 5 6 
-> 10 2 
+> 10
+> 7 5
+> 1 2
+> 1 7
+> 8 9
+> 4 1
+> 9 7
+> 5 6
+> 10 2
 > 9 3
 > ```
 >
@@ -714,15 +713,15 @@ sidebar:
 >
 > ## 题目描述
 >
-> 外星人又双叒叕要攻打地球了，外星母舰已经向地球航行！这一次，``JYY`` 已经联系好了黄金舰队，打算联合所有 ``JSOIer`` 抵御外星人的进攻。
+> 外星人又双叒叕要攻打地球了，外星母舰已经向地球航行！这一次，`JYY` 已经联系好了黄金舰队，打算联合所有 `JSOIer` 抵御外星人的进攻。
 >
-> 在黄金舰队就位之前，``JYY`` 打算事先了解外星人的进攻计划。现在，携带了监听设备的特工已经秘密潜入了外星人的母舰，准备对外星人的通信实施监听。
+> 在黄金舰队就位之前，`JYY` 打算事先了解外星人的进攻计划。现在，携带了监听设备的特工已经秘密潜入了外星人的母舰，准备对外星人的通信实施监听。
 >
-> 外星人的母舰可以看成是一棵 $n$ 个节点、 $n-1$ 条边的**无向树**，树上的节点用 $1,2,\cdots,n$ 编号。``JYY`` 的特工已经装备了隐形模块，可以在外星人母舰中不受限制地活动，可以神不知鬼不觉地在节点上安装监听设备。
+> 外星人的母舰可以看成是一棵 $n$ 个节点、 $n-1$ 条边的**无向树**，树上的节点用 $1,2,\cdots,n$ 编号。`JYY` 的特工已经装备了隐形模块，可以在外星人母舰中不受限制地活动，可以神不知鬼不觉地在节点上安装监听设备。
 >
-> 如果在节点 $u$ 上安装监听设备，则 ``JYY`` 能够监听与 $u$ **直接相邻**所有的节点的通信。换言之，如果在节点 $u$ 安装监听设备，则对于树中每一条边 $(u,v)$ ，节点 $v$ 都会被监听。特别注意**放置在节点 $u$ 的监听设备并不监听 $u$ 本身的通信**，这是 ``JYY`` 特别为了防止外星人察觉部署的战术。
+> 如果在节点 $u$ 上安装监听设备，则 `JYY` 能够监听与 $u$ **直接相邻**所有的节点的通信。换言之，如果在节点 $u$ 安装监听设备，则对于树中每一条边 $(u,v)$ ，节点 $v$ 都会被监听。特别注意**放置在节点 $u$ 的监听设备并不监听 $u$ 本身的通信**，这是 `JYY` 特别为了防止外星人察觉部署的战术。
 >
-> ``JYY`` 的特工一共携带了 $k$ 个监听设备，现在 ``JYY`` 想知道，有多少种不同的放置监听设备的方法，能够使得母舰上**所有节点**的通信都被监听？为了避免浪费，**每个节点至多只能安装一个监听设备，且监听设备必须被用完**。
+> `JYY` 的特工一共携带了 $k$ 个监听设备，现在 `JYY` 想知道，有多少种不同的放置监听设备的方法，能够使得母舰上**所有节点**的通信都被监听？为了避免浪费，**每个节点至多只能安装一个监听设备，且监听设备必须被用完**。
 >
 > ## 输入格式
 >

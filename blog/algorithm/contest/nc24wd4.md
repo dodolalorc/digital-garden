@@ -2,7 +2,7 @@
 title: "🎉2024牛客寒假营4||补题"
 description: "2024 牛客寒假营第 4 场补题记录，涵盖柠檬可乐、左右互博、冬眠和守恒等题目的分析。"
 date: "2024-02-26T19:54:28+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -150,7 +150,7 @@ void solve() {
     if (n == 1) {
         cout << 1 << '\n';return;
     }
-    
+
     set<ll>res;
     ll f = sum / n;
     for (ll k = 1;k * k <= sum;k++) {
@@ -167,4 +167,3 @@ void solve() {
     cout << res.size() << '\n';
 }
 ```
-

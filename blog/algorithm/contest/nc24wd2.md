@@ -2,7 +2,7 @@
 title: "🎉2024牛客寒假营2||补题"
 description: "2024 牛客寒假营第 2 场补题记录，围绕 Tokitsukaze 系列题整理构造、消除和最短路思路。"
 date: "2024-02-09T14:46:52+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -11,8 +11,6 @@ sidebar:
   toc: true
   relatedPosts: true
 ---
-
-
 
 ## A-Tokitsukaze and Bracelet
 
@@ -106,8 +104,6 @@ void solve() {
 }
 ```
 
-
-
 ## E&F-Tokitsukaze and Eliminate
 
 ### 题意
@@ -173,6 +169,7 @@ void solve() {
 ### 题意
 
 有一个$n$个顶点的完全图$G$，顶点编号是$1$到$n$，编号为$i$的顶点值是$a_i$，边权的计算方式如下：
+
 $$
 w_{u,v}=
 \begin{cases}
@@ -180,9 +177,11 @@ w_{u,v}=
 |a_u+a_v|+|a_u-a_v|& \text{u ≠ v}
 \end{cases}
 $$
+
 $dist(i,j)$定义为以$i$为起点到$j$的最短路。
 
 求：
+
 $$
 \sum_{i=1}^{n}\sum_{j=1}^{n}dist(i,j)
 $$
@@ -201,7 +200,7 @@ $$
 |a_i+a_j|+|a_i-a_j|=
 \begin{cases}
 &a_i+a_j+a_i-a_j&=2\times a_i&\quad a_i\ge a_j \\
-&a_i+a_j+a_j-a_i&=2\times a_j&\quad a_i\lt a_j 
+&a_i+a_j+a_j-a_i&=2\times a_j&\quad a_i\lt a_j
 \end{cases}
 $$
 
@@ -230,6 +229,7 @@ void solve() {
 ### 题意
 
 有一个$n$个顶点的完全图$G$，顶点编号是$1$到$n$，编号为$i$的顶点值是$a_i$，边权的计算方式如下：
+
 $$
 w_{u,v}=
 \begin{cases}
@@ -237,9 +237,11 @@ w_{u,v}=
 |a_u+a_v|-|a_u-a_v|& \text{u ≠ v}
 \end{cases}
 $$
+
 $dist(i,j)$定义为以$i$为起点到$j$的最短路。
 
 求：
+
 $$
 \sum_{i=1}^{n}\sum_{j=1}^{n}dist(i,j)
 $$
@@ -258,7 +260,7 @@ $$
 |a_i+a_j|-|a_i-a_j|=
 \begin{cases}
 &a_i+a_j-a_i+a_j&=2\times a_j&\quad a_i\ge a_j \\
-&a_i+a_j-a_j+a_i&=2\times a_i&\quad a_i\lt a_j 
+&a_i+a_j-a_j+a_i&=2\times a_i&\quad a_i\lt a_j
 \end{cases}
 $$
 
@@ -285,4 +287,3 @@ void solve() {
     cout << 4 * ans << '\n';
 }
 ```
-

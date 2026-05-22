@@ -2,7 +2,7 @@
 title: "🎉2024牛客寒假营6||补题"
 description: "2024 牛客寒假营第 6 场补题记录，记录宇宙终结、爱恨纠葛、心绪解剖和友谊套路等题解。"
 date: "2024-02-26T19:54:36+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -138,7 +138,7 @@ void solve() {
     for (int i = 2;i < 45;i++) {
         f[i] = f[i - 1] + f[i - 2];
     }
-    
+
     while (q--) {
         ll n;cin >> n;
         int p1 = upper_bound(f.begin(), f.end(), n) - f.begin();
@@ -276,7 +276,7 @@ void solve() {
             pa[i] = a[i];
         }
         xa = max(xa, pa[i]);
-        
+
         if (qa[i - 1] + a[i] < a[i]) {
             qa[i] = qa[i - 1] + a[i];
         }
@@ -304,8 +304,7 @@ void solve() {
         }
         yb = min(yb, qb[i]);
     }
-    
+
     cout << max(xa * xb, max(xa * yb, max(ya * yb, ya * xb))) << endl;
 }
 ```
-

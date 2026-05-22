@@ -2,7 +2,7 @@
 title: "图论基础||存储图||DFS、BFS(图论)"
 description: "图论基础笔记，介绍图的定义、存储方式以及 DFS、BFS 等基础遍历方法。"
 date: "2024-01-06T14:15:17+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -11,8 +11,6 @@ sidebar:
   toc: true
   relatedPosts: true
 ---
-
-
 
 ### 1.1图的定义
 
@@ -60,8 +58,8 @@ v8((v8))--11-->v3((v3))
 
 #### 邻接矩阵
 
-* 遍历效率低、不能存重边、初始化效率低`初始化O(n^2)时间，建图O(m)时间`、空间开销大`O(n^2)`
-* 对于稀疏图来说大部分是INF，空间利用效率也不高
+- 遍历效率低、不能存重边、初始化效率低`初始化O(n^2)时间，建图O(m)时间`、空间开销大`O(n^2)`
+- 对于稀疏图来说大部分是INF，空间利用效率也不高
 
 #### 前向星
 
@@ -70,8 +68,6 @@ v8((v8))--11-->v3((v3))
 <u>优点：在点特别多时可以存储重边</u>
 
 <u>缺点：不能直接判断任意两个点之间是否有边。排序和初始化数组费时间。</u>
-
-
 
 需要的数据结构如下：
 
@@ -99,8 +95,6 @@ bool cmp(NODE a, NODE b){
 }
 ```
 
-
-
 完整代码：
 
 ```cpp
@@ -126,11 +120,11 @@ bool cmp(NODE a, NODE b) {
 int main() {
 	int n, m;
 	cin >> n >> m;
-	
+
 	// 读入数据
 	for (int i = 0;i < m;i++)
 		cin >> edge[i].from >> edge[i].to >> edge[i].w;
-	
+
 	// 排序
 	sort(edge, edge + m, cmp);
 
@@ -190,8 +184,6 @@ v8-->v7 权值为：7 该边在数组edge中的序号为11
 */
 ```
 
-
-
 #### 邻接表
 
 图的一种链式存储结构，把图G中所有邻接于v~i~的顶点链接成为一个v~i~的单链表。
@@ -201,8 +193,6 @@ v8-->v7 权值为：7 该边在数组edge中的序号为11
 ##### 1. 动态建表
 
 动态建表的时间效率是`O(m)`，空间效率是`O(m)`，主要的时间损耗在于不断地申请新空间，且判断任意两个点之间是否有边相连的效率也低（需要搜索各个点的单链表）(感觉还好？)。
-
-
 
 数据结构：
 
@@ -242,7 +232,7 @@ VNode Adjlist[maxn];	// 全图
 int main() {
 	int n, m;
 	cin >> n >> m;
-	
+
 	// 读入数据
 	for (int i = 0;i < m;i++) {
 		int fi, ti, wi;
@@ -252,7 +242,7 @@ int main() {
 		// 给该数据传值
 		p->to = ti;
 		p->w = wi;
-        
+
 		// 该新边的next指针指向上一个链接到起点为fi的单链表中的起点
         /*
         （相当于在前面插入，这点可以观察遍历输出部分发现，比如先读入的v1-->v2后读入的v1-->v6，但在储存时我们将后来的v1-->v6插入在了v1-->v2前面）
@@ -324,8 +314,6 @@ v8 -->v3 权值为：11 该边记录在点v8的单链表的第1个
 
 注意：一个图 的邻接表不是唯一的，其具体的邻接次序与边的输入次序有关。
 
-
-
 ##### 2. vector模拟链表实现
 
 vector模拟链表的实现方式与前一种区别不大（前插入和后插入的区别？反正基本没有质变）
@@ -341,8 +329,6 @@ struct EdgeNode {
 };
 vector<EdgeNode>mp[maxn];
 ```
-
-
 
 完整代码：
 
@@ -365,7 +351,7 @@ int main() {
 		EdgeNode e;
 		int fi, ti, wi;
 		cin >> fi >> ti >> wi;
-		
+
 		e.to = ti;
 		e.w = wi;
 		mp[fi].push_back(e);
@@ -374,7 +360,7 @@ int main() {
 	// 遍历
 	for (int i = 1;i <= n;i++) {
 		cout << "点v" << i << "为起点的边：" << endl;
-		
+
 		vector<EdgeNode>::iterator it = mp[i].begin();
 		int ind = 0;
 		for (;it != mp[i].end();it++) {
@@ -383,7 +369,7 @@ int main() {
 		cout << "点v" << i << "的度数为：" << ind << endl;
 		cout << endl;
 	}
-	
+
 
 	return 0;
 }
@@ -434,8 +420,6 @@ v8-->v7 权值为：7 该边在所有以点v8为起点的边中序号为1
 
 链式前向星采用数组模拟链表的方式实现邻接表的功能，使用很少的额外空间，<u>是目前建图和遍历效率最高的存储方式。</u>
 
-
-
 数据结构：
 
 ```cpp
@@ -465,8 +449,6 @@ for (int i = 0;i < m;i++) {
 }
 ```
 
-
-
 完整代码：
 
 ```cpp
@@ -488,23 +470,23 @@ int main() {
 
 	// 初始化head
 	memset(head, -1, sizeof(head));
-	
+
 	// 读入数据
 	for (int i = 0;i < m;i++) {
 		int fi, ti, wi;
 		cin >> fi >> ti >> wi;
 		Edge[i].to = ti;
 		Edge[i].w = wi;
-		
+
 		Edge[i].next = head[fi];
 		head[fi] = i;
 	}
 
-	
+
 	// 遍历
 	for (int i = 1;i <= n;i++) {
 		cout << "点v" << i << "为起点的边：" << endl;
-		
+
 		int ind = 0;
 		for (int j = head[i];j != -1;j = Edge[j].next) {
 			cout << "v" << i << "-->v" << Edge[j].to << " 权值为：" << Edge[j].w << " 该边在所有以点v" << i << "为起点的边中序号为" << ind++ << endl;
@@ -597,13 +579,11 @@ void dfs(int x) {
 		if (!s[Edge[i].to])
 			// 如果当前边的终点未被访问，我们就去访问它
 			dfs(Edge[i].to);
-		
+
 		// 当前边的终点如果已被访问，我们就访问和节点x的下一条边，即给i赋值为Edge[i].next
 	}
 }
 ```
-
-
 
 完整代码：
 
@@ -632,7 +612,7 @@ void dfs(int x) {
 		if (!s[Edge[i].to])
 			// 如果当前边的终点未被访问，我们就去访问它
 			dfs(Edge[i].to);
-		
+
 		// 当前边的终点如果已被访问，我们就访问和节点x的下一条边，即给i赋值为Edge[i].next
 	}
 }
@@ -643,14 +623,14 @@ int main() {
 
 	// 初始化head
 	memset(head, -1, sizeof(head));
-	
+
 	// 读入数据
 	for (int i = 0;i < m;i++) {
 		int fi, ti, wi;
 		cin >> fi >> ti >> wi;
 		Edge[i].to = ti;
 		Edge[i].w = wi;
-		
+
 		Edge[i].next = head[fi];
 		head[fi] = i;
 	}
@@ -671,15 +651,11 @@ int main() {
 
 注意：这里还是使用强推的<u>链式前向星</u>数据结构来储存图，因为边在读入的时候是前插入，所以后读入的边会先被遍历。
 
-
-
 #### 广度优先遍历
 
 广度优先就是先访问顶点v~0~的所有边的终点，然后再访问第一条边往下延续的未被访问的顶点（第一条边往下没有就第二条边...如此搜索）
 
 广度优先用到了队列来记录遍历某顶点广度时，遍历的这个终点的下一点(next)是否被遍历，如果未被遍历则标记入队，等待当前顶点按照广度优先被遍历完终点后从该队列中获得下一轮被遍历的点。
-
-
 
 广度优先样例代码：
 
@@ -693,14 +669,14 @@ void bfs(int x) {
 	int queue[maxn];
 	int iq = 0;		// 遍历以x为顶点的起始状态时，队列是空的
 	queue[iq++] = x;	// 给当前队列添加被访问的这个顶点x
-	
+
 	for (int i = 0;i < iq;i++) {
-		
+
 		// 这个队列按序输出可以反应搜索顺序
 		cout << queue[i] << " ";
-		
+
 		// 按照广度优先构造顺序队列(入队的都算作被访问了，下次执行当前循环(i++)将会输出最后入队的该顶点)
-		
+
 		for (int k = head[queue[i]];k != -1;k = Edge[k].next) {
 			// 遍历当前节点x相连的节点，即当前边的终点，如果该点没有被访问过，则入队，标记已访问，队长++
 			if (!s[Edge[k].to]) {
@@ -712,8 +688,6 @@ void bfs(int x) {
 
 }
 ```
-
-
 
 完整代码：
 
@@ -737,14 +711,14 @@ void bfs(int x) {
 	int queue[maxn];
 	int iq = 0;		// 遍历以x为顶点的起始状态时，队列是空的
 	queue[iq++] = x;	// 给当前队列添加被访问的这个顶点x
-	
+
 	for (int i = 0;i < iq;i++) {
-		
+
 		// 这个队列按序输出可以反应搜索顺序
 		cout << queue[i] << " ";
-		
+
 		// 按照广度优先构造顺序队列(入队的都算作被访问了，下次执行当前循环(i++)将会输出最后入队的该顶点)
-		
+
 		for (int k = head[queue[i]];k != -1;k = Edge[k].next) {
 			// 遍历当前节点x相连的节点，即当前边的终点，如果该点没有被访问过，则入队，标记已访问，队长++
 			if (!s[Edge[k].to]) {
@@ -762,14 +736,14 @@ int main() {
 
 	// 初始化head
 	memset(head, -1, sizeof(head));
-	
+
 	// 读入数据
 	for (int i = 0;i < m;i++) {
 		int fi, ti, wi;
 		cin >> fi >> ti >> wi;
 		Edge[i].to = ti;
 		Edge[i].w = wi;
-		
+
 		Edge[i].next = head[fi];
 		head[fi] = i;
 	}
@@ -786,6 +760,4 @@ int main() {
 
 ```
 
-
-
-* 深度优先和广度优先都是通过边来搜索检查邻边是否被遍历到，所以时间复杂度相同，不过访问序列不同。
+- 深度优先和广度优先都是通过边来搜索检查邻边是否被遍历到，所以时间复杂度相同，不过访问序列不同。

@@ -2,7 +2,7 @@
 title: "Electron 构建记录 | 一条龙服务script"
 description: "Electron 构建环境记录，整理 Chromium 开发工具、Electron build-tools 初始化和构建脚本流程。"
 date: "2025-04-25T13:27:50+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true

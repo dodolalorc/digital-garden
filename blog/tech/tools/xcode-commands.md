@@ -2,7 +2,7 @@
 title: "💻常用 xcode 使用命令"
 description: "Xcode 常用命令笔记，整理安装多版本 Xcode、license、xcode-select 路径切换和验证命令。"
 date: "2025-08-02T00:20:02+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -15,7 +15,6 @@ sidebar:
 > [!abstract]+ Xcode 介绍
 >
 > Xcode 是苹果官方推出的集成开发环境（IDE），专为苹果的 Mac OS、iOS、iPad OS、watch OS 等应用开发设计，在 Mac 系统上作用是否广泛。使用 Mac 作为开发工具时必不可少的东西。
-
 
 # XCode 安装
 

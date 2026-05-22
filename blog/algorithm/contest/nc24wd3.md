@@ -2,7 +2,7 @@
 title: "🎉2024牛客寒假营3||补题"
 description: "2024 牛客寒假营第 3 场补题记录，整理智乃主题题、最大子段和与比较函数等问题。"
 date: "2024-02-13T20:21:21+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -39,8 +39,6 @@ void solve() {
     else cout << "No\n";
 }
 ```
-
-
 
 ## B-智乃的数字手串
 
@@ -83,8 +81,6 @@ void solve() {
     else cout << "zn\n";
 }
 ```
-
-
 
 ## D-chino's bubble sort and maximum subarray sum(easy version)
 
@@ -192,8 +188,6 @@ void solve() {
 }
 ```
 
-
-
 ## H-智乃的比较函数(normal version)
 
 ### 题意
@@ -258,8 +252,6 @@ void solve() {
 }
 ```
 
-
-
 ## L&M-智乃的36倍数(easy/hard version)
 
 ### 题意
@@ -287,18 +279,23 @@ $a_i(1\leq a_i \leq 10^{18})$
 easy版本的数据较小，直接双层循环暴力即可。
 
 hard版本可以考虑同余，k是y的位数。
+
 $$
 f(x,y)=x\times 10^{k}+y
 $$
+
 $$
 f(x,y)\% 36=0
 $$
+
 $$
 (x\times 10^{k}+y)\%36=0
 $$
+
 $$
 (x\%36\times 10^{k}\%36+y\%36)\%36=0
 $$
+
 对数组预处理后，枚举以$y$结尾。
 
 ### 参考代码
@@ -358,8 +355,3 @@ void solve() {
     cout << ans << '\n';
 }
 ```
-
-
-
-
-

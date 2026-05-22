@@ -2,7 +2,7 @@
 title: "🎈2025牛客暑寒假多校训练营Day2"
 description: "2025 牛客寒假多校训练营 Day2 的补题记录，涵盖历史之音、蹭饭、字符串内外串和路径题。"
 date: "2025-02-06T00:40:31+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true

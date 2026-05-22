@@ -2,7 +2,7 @@
 title: "刷题记录||区间动态规划"
 description: "区间动态规划刷题记录，整理石子合并、248G 等典型题的状态设计、转移思路与代码。"
 date: "2024-09-11T21:50:26+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -12,11 +12,7 @@ sidebar:
   relatedPosts: true
 ---
 
-
-
 **区间动态规划一般以区间作为动态规划的阶段。**
-
-
 
 ## [P1880]石子合并
 
@@ -61,9 +57,11 @@ $1\leq N\leq 100$，$0\leq a_i\leq 20$​。
 考虑状态转移：
 
 每次合并区间$[l,r]$时，可以由区间$[l,k]$和$[k+1,r]$的状态转移过来，记$f(i,j)$是合并区间$[i,j]$的最大得分，$sum(i,j)$是合并$[i,j]$的得分，则有：
+
 $$
 f(i,j)=max(f(i,j),f(i,k)+f(k+1,j)+sum(i,j))
 $$
+
 此题考虑到是环形数组，可以将数组复制一倍，枚举区间长度是$n$的最优值。
 
 ### 代码
@@ -140,9 +138,9 @@ int main() {
 
 ### 题目描述
 
-Bessie likes downloading games to play on her cell phone, even though she  doesfind the small touch screen rather cumbersome to use with her large hooves.
+Bessie likes downloading games to play on her cell phone, even though she doesfind the small touch screen rather cumbersome to use with her large hooves.
 
-She is particularly intrigued by the current game she is playing.The game starts with a sequence of $N$ positive integers ($2 \leq N\leq 248$), each in the range $1 \ldots 40$.  In one move, Bessie cantake two adjacent numbers with equal values and replace them a singlenumber of value one greater (e.g., she might replace two adjacent 7swith an 8).  The goal is to maximize the value of the largest numberpresent in the sequence at the end of the game.  Please help Bessiescore as highly as possible!
+She is particularly intrigued by the current game she is playing.The game starts with a sequence of $N$ positive integers ($2 \leq N\leq 248$), each in the range $1 \ldots 40$. In one move, Bessie cantake two adjacent numbers with equal values and replace them a singlenumber of value one greater (e.g., she might replace two adjacent 7swith an 8). The goal is to maximize the value of the largest numberpresent in the sequence at the end of the game. Please help Bessiescore as highly as possible!
 
 **输入格式**
 
@@ -176,16 +174,18 @@ Please output the largest integer Bessie can generate.
 
 In this example shown here, Bessie first merges the second and third 1s to
 
-obtain the sequence 1 2 2, and then she merges the 2s into a 3.  Note that it is
+obtain the sequence 1 2 2, and then she merges the 2s into a 3. Note that it is
 
-not optimal  to join the first two 1s.
+not optimal to join the first two 1s.
 
 ### 思路
 
 区间dp，考虑转移：
+
 $$
 f(i,j)=f(i,k)+1\quad when:f(i,k)=f(k+1,j)
 $$
+
 同时要保证$f(i,k)$和$f(k+1,j)$在向$f(i,j)$转移之前，已经进行了"合并"。
 
 ### 代码
@@ -291,9 +291,11 @@ NOIP 2006 提高组 第一题
 ### 思路
 
 将数组处理成环形数组，考虑转移：
+
 $$
 f(i,j)=max(f(i,j),f(i,k)+f(k+1,j)+head[i]\times tail[k]\times tail[j])
 $$
+
 枚举长度为$n$的区间，获得最大值。
 
 ### 代码
@@ -551,6 +553,7 @@ $100\%$ 的数据满足 $1\le n\le 50$。
 ### 思路
 
 设$f(i,j)$表示完成区间$[i,j]$的最小涂色次数。取$i\leq k\lt j$则$f(i,j)$可以由$f(i,k)$和$f(k+1,j)$合并转移而来，转移时，若$s[k]=s[k+1]$，显然在区间$[i,k]$中涂位置$k$和涂位置$k+1$可以是同一步操作；若$s[i]=s[j]$，则涂位置$i$和$j$也可以是同一步操作，则转移方程如下：
+
 $$
 f(i,j)=f(i,k)+f(k+1,j)-(s[i]==s[j] \or s[k]==s[k+1])
 $$
@@ -610,15 +613,15 @@ int main() {
 
 折叠的定义如下：
 
-1. 一个字符串可以看成它自身的折叠。记作 ```S = S```
+1. 一个字符串可以看成它自身的折叠。记作 `S = S`
 
-2. ```X(S)``` 是 $X$ 个 ```S``` 连接在一起的串的折叠。记作 ```X(S) = SSSS…S```。
+2. `X(S)` 是 $X$ 个 `S` 连接在一起的串的折叠。记作 `X(S) = SSSS…S`。
 
-3. 如果 ```A = A’```, ```B = B’```，则 ```AB = A’B’ ```。例如：因为 ```3(A) = AAA```, ```2(B) = BB```，所以 ```3(A)C2(B) = AAACBB```，而 ```2(3(A)C)2(B) = AAACAAACBB```
+3. 如果 `A = A’`, `B = B’`，则 `AB = A’B’ `。例如：因为 `3(A) = AAA`, `2(B) = BB`，所以 `3(A)C2(B) = AAACBB`，而 `2(3(A)C)2(B) = AAACAAACBB`
 
 给一个字符串，求它的最短折叠。
 
-例如 ```AAAAAAAAAABABABCCD``` 的最短折叠为：```9(A)3(AB)CCD```。
+例如 `AAAAAAAAAABABABCCD` 的最短折叠为：`9(A)3(AB)CCD`。
 
 **输入格式**
 
@@ -649,6 +652,7 @@ NEERCYESYESYESNEERCYESYESYES
 ### 思路
 
 设$f(i,j)$是区间$[i,j]$折叠之后的最短长度，如果区间$[i,j]$可以被折叠，则状态转移：
+
 $$
 f(i,j)=max(f(i,j),f(i,k)+2+Len((j-i+1)/(k-i+1)))
 $$
@@ -729,4 +733,3 @@ int main() {
     return 0;
 }
 ```
-

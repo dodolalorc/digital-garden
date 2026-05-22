@@ -2,7 +2,7 @@
 title: "一些回溯相关的刷题记录"
 description: "回溯专题刷题笔记，从四色定理背景引入，整理回溯法思想、适用场景和例题训练。"
 date: "2024-01-03T11:45:58+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -11,8 +11,6 @@ sidebar:
   toc: true
   relatedPosts: true
 ---
-
-
 
 ## 背景
 
@@ -140,8 +138,6 @@ wiki百科：[Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theor
 >
 > USACO Training Section 1.5
 
-
-
 #### 回溯法数独
 
 洛谷链接：[P1784 数独 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)](https://www.luogu.com.cn/problem/P1784)
@@ -171,28 +167,28 @@ wiki百科：[Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theor
 > ### 样例输入 #1
 >
 > ```plaintext
-> 8 0 0 0 0 0 0 0 0 
-> 0 0 3 6 0 0 0 0 0 
-> 0 7 0 0 9 0 2 0 0 
-> 0 5 0 0 0 7 0 0 0 
-> 0 0 0 0 4 5 7 0 0 
-> 0 0 0 1 0 0 0 3 0 
-> 0 0 1 0 0 0 0 6 8 
-> 0 0 8 5 0 0 0 1 0 
+> 8 0 0 0 0 0 0 0 0
+> 0 0 3 6 0 0 0 0 0
+> 0 7 0 0 9 0 2 0 0
+> 0 5 0 0 0 7 0 0 0
+> 0 0 0 0 4 5 7 0 0
+> 0 0 0 1 0 0 0 3 0
+> 0 0 1 0 0 0 0 6 8
+> 0 0 8 5 0 0 0 1 0
 > 0 9 0 0 0 0 4 0 0
 > ```
 >
 > ### 样例输出 #1
 >
 > ```plaintext
-> 8 1 2 7 5 3 6 4 9 
-> 9 4 3 6 8 2 1 7 5 
-> 6 7 5 4 9 1 2 8 3 
-> 1 5 4 2 3 7 8 9 6 
-> 3 6 9 8 4 5 7 2 1 
-> 2 8 7 1 6 9 5 3 4 
-> 5 2 1 9 7 4 3 6 8 
-> 4 3 8 5 2 6 9 1 7 
+> 8 1 2 7 5 3 6 4 9
+> 9 4 3 6 8 2 1 7 5
+> 6 7 5 4 9 1 2 8 3
+> 1 5 4 2 3 7 8 9 6
+> 3 6 9 8 4 5 7 2 1
+> 2 8 7 1 6 9 5 3 4
+> 5 2 1 9 7 4 3 6 8
+> 4 3 8 5 2 6 9 1 7
 > 7 9 6 3 1 8 4 5 2
 > ```
 >
@@ -202,28 +198,28 @@ wiki百科：[Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theor
 >
 > ```plaintext
 > 9 0 0 8 0 0 0 0 0
-> 0 0 0 0 0 0 5 0 0 
-> 0 0 0 0 0 0 0 0 0 
+> 0 0 0 0 0 0 5 0 0
+> 0 0 0 0 0 0 0 0 0
 > 0 2 0 0 1 0 0 0 3
 > 0 1 0 0 0 0 0 6 0
 > 0 0 0 4 0 0 0 7 0
-> 7 0 8 6 0 0 0 0 0 
-> 0 0 0 0 3 0 1 0 0 
-> 4 0 0 0 0 0 2 0 0 
+> 7 0 8 6 0 0 0 0 0
+> 0 0 0 0 3 0 1 0 0
+> 4 0 0 0 0 0 2 0 0
 > ```
 >
 > 输出
 >
 > ```plaintext
-> 9 7 2 8 5 3 6 1 4 
-> 1 4 6 2 7 9 5 3 8 
-> 5 8 3 1 4 6 7 2 9 
-> 6 2 4 7 1 8 9 5 3 
-> 8 1 7 3 9 5 4 6 2 
-> 3 5 9 4 6 2 8 7 1 
-> 7 9 8 6 2 1 3 4 5 
-> 2 6 5 9 3 4 1 8 7 
-> 4 3 1 5 8 7 2 9 6 
+> 9 7 2 8 5 3 6 1 4
+> 1 4 6 2 7 9 5 3 8
+> 5 8 3 1 4 6 7 2 9
+> 6 2 4 7 1 8 9 5 3
+> 8 1 7 3 9 5 4 6 2
+> 3 5 9 4 6 2 8 7 1
+> 7 9 8 6 2 1 3 4 5
+> 2 6 5 9 3 4 1 8 7
+> 4 3 1 5 8 7 2 9 6
 > ```
 
 #### 子集
@@ -252,8 +248,6 @@ wiki百科：[Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theor
 > 输出：[[],[0]]
 > ```
 >
-> 
->
 > ## 提示：
 >
 > - `1 <= nums.length <= 10`
@@ -268,7 +262,7 @@ wiki百科：[Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theor
 >
 > 给定一个字符串 `s` ，通过将字符串 `s` 中的每个字母转变大小写，我们可以获得一个新的字符串。
 >
-> 返回 *所有可能得到的字符串集合* 。以 **任意顺序** 返回输出。
+> 返回 _所有可能得到的字符串集合_ 。以 **任意顺序** 返回输出。
 >
 > ## 示例 1：
 >
@@ -283,8 +277,6 @@ wiki百科：[Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theor
 > 输入: s = "3z4"
 > 输出: ["3z4","3Z4"]
 > ```
->
-> 
 >
 > ## 提示:
 >
@@ -315,7 +307,7 @@ wiki百科：[Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theor
 >
 > 第一行有一个整数，代表玩偶的个数 $n$，玩偶从 $0$ 开始编号。
 >
-> 第二行开始后面的 $n$ 行，每行三个整数，第 $(i + 2)$ 行的整数  $a_i, b_i, c_i$，分别表示买一个第 $i$ 个玩偶需要的价钱，获得的价值以及第 $i$ 个玩偶的限购次数。
+> 第二行开始后面的 $n$ 行，每行三个整数，第 $(i + 2)$ 行的整数 $a_i, b_i, c_i$，分别表示买一个第 $i$ 个玩偶需要的价钱，获得的价值以及第 $i$ 个玩偶的限购次数。
 >
 > 接下来的一行有一个整数 $q$，表示询问次数。
 >
@@ -330,27 +322,27 @@ wiki百科：[Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theor
 > ### 样例输入 #1
 >
 > ```plaintext
-> 5 
-> 2 3 4 
-> 1 2 1 
-> 4 1 2 
-> 2 1 1 
-> 3 2 3 
-> 5 
-> 1 10 
-> 2 7 
-> 3 4 
-> 4 8 
+> 5
+> 2 3 4
+> 1 2 1
+> 4 1 2
+> 2 1 1
+> 3 2 3
+> 5
+> 1 10
+> 2 7
+> 3 4
+> 4 8
 > 0 5
 > ```
 >
 > ### 样例输出 #1
 >
 > ```plaintext
-> 13 
-> 11 
-> 6 
-> 12 
+> 13
+> 11
+> 6
+> 12
 > 4
 > ```
 >
@@ -371,10 +363,10 @@ wiki百科：[Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theor
 > #### 数据规模与约定
 >
 > - 对于 $10\%$ 的数据，保证 $n \leq 10$。
-> - 另外存在 $20\%$ 的数据，保证  $n \leq 100$，$c_i = 1$，$q \leq 100$。
+> - 另外存在 $20\%$ 的数据，保证 $n \leq 100$，$c_i = 1$，$q \leq 100$。
 > - 另外存在 $20\%$ 的数据，保证 $n \leq 100$，$q \leq 100$。
 > - 另外存在 $30\%$ 的数据，保证 $c_i = 1$。
-> - 对于 $100\%$ 的数据，保证  $1 \leq n \leq 1000$，$1 \leq q \leq 3\times 10^5$， $1 \leq a_i,b_i,c_i \leq 100$，$0 \leq d_i < n$，$0 \leq e_i \leq 1000$。
+> - 对于 $100\%$ 的数据，保证 $1 \leq n \leq 1000$，$1 \leq q \leq 3\times 10^5$， $1 \leq a_i,b_i,c_i \leq 100$，$0 \leq d_i < n$，$0 \leq e_i \leq 1000$。
 
 #### 背包问题二
 
@@ -482,8 +474,3 @@ wiki百科：[Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theor
 > 对于全部的测试点，保证 $1 \leq n \leq 3.2 \times 10^4$，$1 \leq m \leq 60$，$0 \leq v_i \leq 10^4$，$1 \leq p_i \leq 5$，$0 \leq q_i \leq m$，答案不超过 $2 \times 10^5$。
 >
 > NOIP 2006 提高组 第二题
-
-
-
-
-

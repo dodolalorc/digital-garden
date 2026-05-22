@@ -2,7 +2,7 @@
 title: "JavaScript 模块打包器 Rollup"
 description: "Rollup 模块打包器笔记，整理打包需求、核心特性、与 Vite 的关系以及和 Rspack、Webpack 的对比。"
 date: "2025-10-09T01:36:48+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true

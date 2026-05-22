@@ -2,7 +2,7 @@
 title: "🫟2024牛客暑假多校训练营Day8||补题"
 description: "2024 牛客暑假多校训练营 Day8 的补题记录，整理 Haitang and Game 与 Haitang and Ava 的思路和代码。"
 date: "2024-08-09T00:26:32+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -20,9 +20,9 @@ sidebar:
 
 #### 数据范围
 
-* $1\leq t\leq 100$
-* $1\leq n\leq 10^5$
-* $1\leq a_i\leq 10^5$
+- $1\leq t\leq 100$
+- $1\leq n\leq 10^5$
+- $1\leq a_i\leq 10^5$
 
 ### 思路
 
@@ -78,16 +78,16 @@ void solve() {
 
 符合以下条件的字符串的合法的：
 
-* 空串是合法的。
-* 在合法串$S$的前面或后面加$ava$​形成的字符串是合法的。
-* 在合法串$S$的前面或后面加$avava$​形成的字符串是合法的。
+- 空串是合法的。
+- 在合法串$S$的前面或后面加$ava$​形成的字符串是合法的。
+- 在合法串$S$的前面或后面加$avava$​形成的字符串是合法的。
 
 给你一个字符串，判断它是否合法。
 
 #### 数据范围
 
-* $1\leq T\leq 1.7\times 10^5$
-* $3\leq |S| \leq 5\times 10^5$
+- $1\leq T\leq 1.7\times 10^5$
+- $3\leq |S| \leq 5\times 10^5$
 
 ### 思路
 
@@ -131,10 +131,3 @@ void solve() {
     }
 }
 ```
-
-
-
-
-
-
-

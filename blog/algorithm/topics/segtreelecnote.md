@@ -2,7 +2,7 @@
 title: "线段树讲义||寒假"
 description: "线段树寒假讲义笔记，介绍建树、区间查询、区间修改和懒标记等核心操作。"
 date: "2024-03-13T13:29:07+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true

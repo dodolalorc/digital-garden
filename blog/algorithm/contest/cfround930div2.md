@@ -2,7 +2,7 @@
 title: "💭Codeforces Round 930(div2)"
 description: "Codeforces Round 930 Div.2 的补题记录，记录 Shuffle Party、Binary Path 和 Bitwise Operation Wizard 的解题过程。"
 date: "2024-03-13T12:26:38+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -11,8 +11,6 @@ sidebar:
   toc: true
   relatedPosts: true
 ---
-
-
 
 # A-Shuffle Party
 
@@ -120,8 +118,6 @@ $t(1≤t≤1000)$
 
 $n(2≤n≤10^4)$​
 
-
-
 ## 思路
 
 先两两比较找到最大的数，再找到与最大的数异或的结果最大的另一个数。
@@ -159,4 +155,3 @@ void solve() {
     cout << "! " << pm << " " << pn << endl;
 }
 ```
-

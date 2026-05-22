@@ -2,7 +2,7 @@
 title: "线段树专题练习"
 description: "线段树专题练习记录，围绕扫描线、区间维护等题目整理题意、思路和代码。"
 date: "2024-08-16T22:43:59+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -30,7 +30,6 @@ sidebar:
 - [ ] [P1502 窗口的星星 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)](https://www.luogu.com.cn/problem/P1502)
 - [ ] [P2471 SCOI2007 降雨量 - 洛谷 | 计算机科学教育新生态 (luogu.com.cn)](https://www.luogu.com.cn/problem/P2471)
 
-
 ## Atlantis & P5490 扫描线矩形面积并
 
 [Problem - 1542 (hdu.edu.cn)](https://acm.hdu.edu.cn/showproblem.php?pid=1542)
@@ -43,9 +42,9 @@ sidebar:
 
 #### 数据范围
 
-* $0\leq n\leq 100$
-* $0\leq x_1\lt x_2\leq 10^5$
-* $0\leq y_1\lt y_2\leq 10^5$
+- $0\leq n\leq 100$
+- $0\leq x_1\lt x_2\leq 10^5$
+- $0\leq y_1\lt y_2\leq 10^5$
 
 ### 思路
 
@@ -504,7 +503,9 @@ int main() {
 ```
 
 ## 敌兵布阵
+
 [敌兵布阵](https://acm.hdu.edu.cn/showproblem.php?pid=1166)
+
 ### 题意
 
 有$N$个营地，初始第$i$个营地有$a_i$个人，有$4$种命令。
@@ -516,8 +517,8 @@ int main() {
 
 #### 数据范围
 
-* $N\leq 50000$
-* $1\leq a_i\leq 50$​
+- $N\leq 50000$
+- $1\leq a_i\leq 50$​
 
 ### 思路
 
@@ -635,9 +636,9 @@ int main() {
 
 #### 数据范围
 
-* $3\leq n \leq 10^5$
-* $0\leq a_i\leq 10^9$
-* $1\leq q \leq 2\times 10^5$
+- $3\leq n \leq 10^5$
+- $0\leq a_i\leq 10^9$
+- $1\leq q \leq 2\times 10^5$
 
 对于第一类操作，保证$-10^9\leq x\leq 10^9$
 
@@ -783,7 +784,7 @@ node query(int p, int cl, int cr, int l, int r) {
     return ret1;
 
   ret = merge(ret1, ret2);
-  
+
   return ret;
 }
 
@@ -835,17 +836,3 @@ int main(void) {
 }
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-

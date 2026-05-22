@@ -2,7 +2,7 @@
 title: "🌐URL 重写规则和静态资源解析逻辑"
 description: "URL 重写与静态资源解析笔记，记录问题背景、原因分析和对应的规则修复方案。"
 date: "2025-07-14"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true

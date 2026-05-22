@@ -2,7 +2,7 @@
 title: "🫟2024牛客暑假多校训练营Day3||补题"
 description: "2024 牛客暑假多校训练营 Day3 的补题记录，包含 Bridging the Gap、Crash Test 和 Dominoes 等题的题解。"
 date: "2024-07-23T18:37:58+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -20,8 +20,8 @@ sidebar:
 
 #### 数据范围
 
-* $1\leq L\lt R\leq n\leq 5\times 10^5$​
-* $1\leq h_i\leq 5\times 10^5$
+- $1\leq L\lt R\leq n\leq 5\times 10^5$​
+- $1\leq h_i\leq 5\times 10^5$
 
 ### 思路
 
@@ -52,9 +52,9 @@ void solve() {
 
 #### 数据范围
 
-* $1\leq n\leq 100$
-* $1\leq D \leq 10^{18}$
-* $1\leq h[i]\leq 10^{18}$
+- $1\leq n\leq 100$
+- $1\leq D \leq 10^{18}$
+- $1\leq h[i]\leq 10^{18}$
 
 ### 思路
 
@@ -104,8 +104,8 @@ void solve() {
 
 #### 数据范围
 
-* $1\leq n\leq 2\times 10^5$
-* $1\leq x_i,y_i\leq 10^9$
+- $1\leq n\leq 2\times 10^5$
+- $1\leq x_i,y_i\leq 10^9$
 
 ### 思路
 
@@ -267,8 +267,8 @@ int main() {
 
 #### 数据范围
 
-* $1\leq n,m\leq 1000$
-* $0.5\leq q\leq 1$
+- $1\leq n,m\leq 1000$
+- $0.5\leq q\leq 1$
 
 ### 思路
 
@@ -355,7 +355,7 @@ int main() {
 
 #### 数据范围
 
-* $1\leq n,a,b\leq 10^5$
+- $1\leq n,a,b\leq 10^5$
 
 ### 思路
 
@@ -476,8 +476,3 @@ void solve() {
     }
 }
 ```
-
-
-
-
-
