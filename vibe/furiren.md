@@ -7,7 +7,7 @@ type: photo
 mood: ""
 location: "长春"
 images: 
-  - https://dodola-images-1324351636.cos.ap-guangzhou.myqcloud.com/furiren-01.png
+  - https://dodola-images-1324351636.cos.ap-guangzhou.myqcloud.com/20260522152016085.png
   - https://dodola-images-1324351636.cos.ap-guangzhou.myqcloud.com/furiren-02.png 
   - https://dodola-images-1324351636.cos.ap-guangzhou.myqcloud.com/furiren-03.png
   - https://dodola-images-1324351636.cos.ap-guangzhou.myqcloud.com/furiren-04.png
