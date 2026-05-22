@@ -11,7 +11,7 @@ jobs:
     permissions:
       contents: read
     env:
-      TARGET_REPO: dodolalorc/navfolio-site
+      TARGET_REPO: dodolalorc/digital-site
       TARGET_BRANCH: main
       TARGET_PATH: src/content
     steps:
