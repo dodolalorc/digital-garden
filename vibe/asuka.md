@@ -12,7 +12,7 @@ images:
   - https://dodola-images-1324351636.cos.ap-guangzhou.myqcloud.com/asuka-03.png
   - https://dodola-images-1324351636.cos.ap-guangzhou.myqcloud.com/asuka-04.png
 tags: []
-align: left
+align: right
 size: md
 ---
 
