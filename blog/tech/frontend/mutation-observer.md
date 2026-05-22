@@ -2,7 +2,7 @@
 title: "MutationObserver学习+实践"
 description: "MutationObserver 学习与实践记录，分析页面加载监听的局限，并用观察 DOM 变化实现主题效果。"
 date: "2024-07-04T16:31:24+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -25,17 +25,21 @@ sidebar:
 ## 想法分析
 
 ### `window.onload`和`'DOMContentLoaded'`的问题
+
 原本的实现代码：
-  
+
 ```js
-  window.onload=function () {
-    const randomHex = () => `rgba(${Math.round(Math.random()*255)}, ${Math.round(Math.random()*255)}, ${Math.round(Math.random()*255)}, 0.5)`;
-    var friendArr=document.getElementsByClassName("friend-div"),temp=[];
-    for(var i=0;i<friendArr.length;i++){
-        friendArr[i].style.background=randomHex();
-    }
+window.onload = function () {
+  const randomHex = () =>
+    `rgba(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, 0.5)`;
+  var friendArr = document.getElementsByClassName("friend-div"),
+    temp = [];
+  for (var i = 0; i < friendArr.length; i++) {
+    friendArr[i].style.background = randomHex();
   }
+};
 ```
+
 原本的思路就是简单的在页面加载完成后，获取所有的友链元素，然后给每个元素设置一个随机的背景颜色。但是这样的实现方式有一个问题，就是当友链数量较多的时候，会导致页面加载变慢，因为每次都要重新计算随机颜色，并且在等待本页面加载的时候，友链的背景颜色是白色的，这样会导致页面的视觉体验不好。
 
 在网上询问得到的另一个思路是用`document.addEventListener('DOMContentLoaded', function() {})`，但是这个方法也是等待整个页面加载完毕后才会执行，观察发现还是挺慢的...所以也不适合。
@@ -65,12 +69,12 @@ sidebar:
 搭配scss的话可以这样写：
 
 ```scss
-  $colors: #f00, #0f0, #00f, #ff0, #f0f, #0ff, #000, #fff;
-  @for $i from 1 through length($colors) {
-    .friend-link-div:nth-child(#{$i}) {
-      background: nth($colors, $i);
-    }
+$colors: #f00, #0f0, #00f, #ff0, #f0f, #0ff, #000, #fff;
+@for $i from 1 through length($colors) {
+  .friend-link-div:nth-child(#{$i}) {
+    background: nth($colors, $i);
   }
+}
 ```
 
 于是放弃`window.onload`和`'DOMContentLoaded'`，以及CSS的伪随机实现方法。改用 `MutationObserver` 来实现。
@@ -82,41 +86,41 @@ sidebar:
 ### 代码
 
 ```js
+// 定义一个生成随机背景色的函数
+const randomHex = () =>
+  `rgba(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, 0.5)`;
 
-  // 定义一个生成随机背景色的函数
-  const randomHex = () => `rgba(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, 0.5)`;
+// 遍历所有已经存在的盒子，为每个盒子设置随机背景色
+document.querySelectorAll(".friend-link-div").forEach((div) => {
+  div.style.background = randomHex();
+});
 
-  // 遍历所有已经存在的盒子，为每个盒子设置随机背景色
-  document.querySelectorAll('.friend-link-div').forEach(div => {
-    div.style.background = randomHex();
-  });
-
-  // 定义一个回调函数，用于处理每当DOM树中添加新节点时的操作
-  const callback = function (mutationsList, observer) {
-    for (const mutation of mutationsList) {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-        mutation.addedNodes.forEach(node => {
-          // 检查是否为目标盒子节点
-          if (node.nodeType === 1 && node.classList.contains('friend-link-div')) {
-            // 更改背景色
-            node.style.background = randomHex();
-          }
-        });
-      }
+// 定义一个回调函数，用于处理每当DOM树中添加新节点时的操作
+const callback = function (mutationsList, observer) {
+  for (const mutation of mutationsList) {
+    if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+      mutation.addedNodes.forEach((node) => {
+        // 检查是否为目标盒子节点
+        if (node.nodeType === 1 && node.classList.contains("friend-link-div")) {
+          // 更改背景色
+          node.style.background = randomHex();
+        }
+      });
     }
-  };
+  }
+};
 
-  // 创建MutationObserver实例
-  const observer = new MutationObserver(callback);
+// 创建MutationObserver实例
+const observer = new MutationObserver(callback);
 
-  // 配置观察选项：观察子节点的添加
-  const config = { childList: true, subtree: true };
+// 配置观察选项：观察子节点的添加
+const config = { childList: true, subtree: true };
 
-  // 选择要观察变化的DOM节点（在这个例子中，是body，但你可以根据需要更改）
-  const targetNode = document.body;
+// 选择要观察变化的DOM节点（在这个例子中，是body，但你可以根据需要更改）
+const targetNode = document.body;
 
-  // 启动观察
-  observer.observe(targetNode, config);
+// 启动观察
+observer.observe(targetNode, config);
 ```
 
 ### 关于用于hugo主题的一些Tips
@@ -132,19 +136,19 @@ sidebar:
 可以在`content/links.md`中加入一个`isLink`字段，然后在`footer.html`中判断是否为友链页面，如果是则加载这段js。
 
 ```html
-  {{ if .Params.isLink }}
-    <script>
-      // 代码
-    </script>
-  {{ end }}
+{{ if .Params.isLink }}
+<script>
+  // 代码
+</script>
+{{ end }}
 ```
 
 假如不想每次都把新增的js直接写在`footer.html`等地方中，可以在`static/js/`文件夹下新建一个js文件，然后在`footer.html`中引入这个js文件。
 
 ```html
-  {{ if .Params.isLink }}
-    <script src="/js/_extended/friend-link.js"></script>
-  {{ end }}
+{{ if .Params.isLink }}
+<script src="/js/_extended/friend-link.js"></script>
+{{ end }}
 ```
 
 另注：githubPage是jekyll模板似乎不能识别下划线开头的文件，所以有需要的话可以把`_extended`改成其他名字。

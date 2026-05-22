@@ -2,7 +2,7 @@
 title: "JavaScript 原型链简述"
 description: "JavaScript 原型链笔记，通过示例梳理原型对象、继承关系和原型链结构。"
 date: "2025-10-08T22:49:23+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -39,13 +39,13 @@ function Person(name) {
 }
 
 // 2. 在构造函数的 prototype 上添加方法
-Person.prototype.sayHello = function() {
+Person.prototype.sayHello = function () {
   console.log(`Hello, my name is ${this.name}`);
 };
 
 // 3. 使用 new 创建实例
-const person1 = new Person('Alice');
-const person2 = new Person('Bob');
+const person1 = new Person("Alice");
+const person2 = new Person("Bob");
 
 // 4. 调用方法
 person1.sayHello(); // Hello, my name is Alice
@@ -85,11 +85,11 @@ Student.prototype = Object.create(Person.prototype);
 Student.prototype.constructor = Student;
 
 // 子类自己的方法
-Student.prototype.sayMajor = function() {
+Student.prototype.sayMajor = function () {
   console.log(`My major is ${this.major}`);
 };
 
-const student1 = new Student('Charlie', 'Computer Science');
+const student1 = new Student("Charlie", "Computer Science");
 student1.sayHello(); // Hello, my name is Charlie (来自 Person 原型)
 student1.sayMajor(); // My major is Computer Science (来自 Student 原型)
 ```
@@ -114,7 +114,7 @@ student1 --> Student.prototype (是一个 Person 实例) --> Person.prototype --
 可以在控制台查看这个属性的内容：
 
 ```js
-function myfunc(){};
+function myfunc() {}
 console.log(myfunc.prototype);
 ```
 
@@ -129,11 +129,11 @@ console.log(myfunc.prototype);
 `__proto__`属性是对象实例和它的构造器的链接，是从构造函数的`prototype`属性派生的，从这个链接向上溯源原型链，可以在构造器在找到这些属性和方法。
 
 ```js
-person1.__proto__ === Person.prototype
-Person.__proto__ === Function.prototype
-Person.prototype.__proto__ === Object.prototype
-Object.__proto__ === Function.prototype
-Object.prototype.__proto__ === null
+person1.__proto__ === Person.prototype;
+Person.__proto__ === Function.prototype;
+Person.prototype.__proto__ === Object.prototype;
+Object.__proto__ === Function.prototype;
+Object.prototype.__proto__ === null;
 ```
 
 ### 一个例子
@@ -143,7 +143,7 @@ function Person(name) {
   this.name = name;
 }
 
-const person1 = new Person('Alice');
+const person1 = new Person("Alice");
 
 // 原型链关系：
 // person1 -> Person.prototype -> Object.prototype -> null

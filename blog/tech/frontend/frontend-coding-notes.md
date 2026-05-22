@@ -2,7 +2,7 @@
 title: "八股文短代码 Coding 篇"
 description: "前端手写代码笔记，整理千分位格式化、深浅拷贝、new、柯里化和 Promise 封装 AJAX 等常见题。"
 date: "2025-03-13T14:08:19+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -15,9 +15,9 @@ sidebar:
 ### 代码：千分位逗号
 
 ```javascript
-let num = 1234567.89;  
-let formattedNum = num.toLocaleString('en-US');  
-console.log(formattedNum);  // 输出 "1,234,567.89"
+let num = 1234567.89;
+let formattedNum = num.toLocaleString("en-US");
+console.log(formattedNum); // 输出 "1,234,567.89"
 ```
 
 ### 代码：手写深浅拷贝
@@ -30,10 +30,10 @@ console.log(formattedNum);  // 输出 "1,234,567.89"
 
 ```javascript
 function shallowCopy(obj) {
-    if (typeof obj !== 'object' || obj === null) {
-        return obj;
-    }
-    return Object.assign({}, obj);  // Object浅拷贝
+  if (typeof obj !== "object" || obj === null) {
+    return obj;
+  }
+  return Object.assign({}, obj); // Object浅拷贝
 }
 
 const original = { a: 1, b: { c: 2 } };
@@ -45,30 +45,30 @@ console.log(copied);
 
 ```javascript
 function deepCopy(obj, hash = new WeakMap()) {
-	// 使用了`WeakMap`来存储已经复制过的对象
-    if (typeof obj !== 'object' || obj === null) {
-        return obj;
-    }
+  // 使用了`WeakMap`来存储已经复制过的对象
+  if (typeof obj !== "object" || obj === null) {
+    return obj;
+  }
 
-    // 日期
-    if (obj instanceof Date) {
-        return new Date(obj);
-    }
-    // 正则
-    if (obj instanceof RegExp) {
-        return new RegExp(obj);
-    }
+  // 日期
+  if (obj instanceof Date) {
+    return new Date(obj);
+  }
+  // 正则
+  if (obj instanceof RegExp) {
+    return new RegExp(obj);
+  }
 
-    let newObj = Array.isArray(obj) ? [] : {};
-    hash.set(obj, newObj);
+  let newObj = Array.isArray(obj) ? [] : {};
+  hash.set(obj, newObj);
 
-    for (let key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            newObj[key] = deepCopy(obj[key], hash); // 递归进行拷贝
-        }
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      newObj[key] = deepCopy(obj[key], hash); // 递归进行拷贝
     }
+  }
 
-    return newObj;
+  return newObj;
 }
 ```
 
@@ -76,23 +76,23 @@ function deepCopy(obj, hash = new WeakMap()) {
 
 ```js
 function myNew(constructor, ...args) {
-    const obj = {};
-    obj.__proto__ = constructor.prototype;
-    const result = constructor.apply(obj, args);
-    // 如果构造函数返回一个对象，则返回，否则返回新创建的对象
-    return result instanceof Object ? result : obj;
+  const obj = {};
+  obj.__proto__ = constructor.prototype;
+  const result = constructor.apply(obj, args);
+  // 如果构造函数返回一个对象，则返回，否则返回新创建的对象
+  return result instanceof Object ? result : obj;
 }
 
 function Person(name, age) {
-    this.name = name;
-    this.age = age;
+  this.name = name;
+  this.age = age;
 }
 
 Person.prototype.greet = function () {
-    console.log(`Hello, I'm ${this.name} and I'm ${this.age} years old.`);
-}
+  console.log(`Hello, I'm ${this.name} and I'm ${this.age} years old.`);
+};
 
-const person = myNew(Person, 'Alice', 12);
+const person = myNew(Person, "Alice", 12);
 console.log(person.name);
 console.log(person.age);
 person.greet();
@@ -102,21 +102,22 @@ person.greet();
 
 ```js
 function curry(fn) {
-    if (typeof fn !== 'function') {
-        return new Error('Type Error');
+  if (typeof fn !== "function") {
+    return new Error("Type Error");
+  }
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      // 如果参数数量足够，则执行
+      return fn.apply(this, args);
     }
-    return function curried(...args) {
-        if (args.length >= fn.length) {    // 如果参数数量足够，则执行
-            return fn.apply(this, args);
-        }
-        return function (...args2) {
-            return curried.apply(this, args.concat(args2));
-        }
-    }
+    return function (...args2) {
+      return curried.apply(this, args.concat(args2));
+    };
+  };
 }
 
 function sum(a, b, c) {
-    return a + b + c;
+  return a + b + c;
 }
 
 const curriedSum = curry(sum);
@@ -128,38 +129,39 @@ console.log(curriedSum(1, 2)(3));
 ### 代码：实现 AJAX 请求，使用 Promise 封装 AJAX 请求
 
 ```js
-function ajaxRequest(url, method = 'GET', data = null) {
-    return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open(method, url, true);
-        if (method == 'POST') {
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        }
+function ajaxRequest(url, method = "GET", data = null) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url, true);
+    if (method == "POST") {
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    }
 
-        xhr.onload = function () {
-            if (this.status === 200) {
-                resolve(this.responseText);
-            } else {
-                reject(new Error(this.statusText));
-            }
-        };
+    xhr.onload = function () {
+      if (this.status === 200) {
+        resolve(this.responseText);
+      } else {
+        reject(new Error(this.statusText));
+      }
+    };
 
-        xhr.onerror = function () {
-            reject(new Error('Network Error'));
-        }
+    xhr.onerror = function () {
+      reject(new Error("Network Error"));
+    };
 
-        if (data) {
-            xhr.send(data);
-        } else {
-            xhr.send();
-        }
-    })
+    if (data) {
+      xhr.send(data);
+    } else {
+      xhr.send();
+    }
+  });
 }
 
-ajaxRequest(
-    'https://api.example.com/data', 'GET').then(response => {
-        console.log(response);
-    }).catch(error => {
-        console.error('Error:', error);
-    });
+ajaxRequest("https://api.example.com/data", "GET")
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
 ```

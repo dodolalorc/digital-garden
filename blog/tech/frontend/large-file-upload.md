@@ -2,7 +2,7 @@
 title: "大文件上传和下载问题"
 description: "大文件上传下载笔记，整理切片上传的基本术语、示例代码和优化方向。"
 date: "2025-03-17T13:17:45+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -14,9 +14,9 @@ sidebar:
 
 > [!abstract]+ 问题预设
 > 网络断开之后，之前上传的部分没了？
-> 
+>
 > 传着传着，网络波动了，结果没有了。
-> 
+>
 > 关机后可不可以接着传，怎么做到？
 
 ### 术语
@@ -38,76 +38,72 @@ sidebar:
 ```html
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>大文件上传</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>大文件上传</title>
-</head>
+  <body>
+    <input type="file" id="file" multiple />
+    <button id="upload">上传</button>
+  </body>
 
-<body>
-  <input type="file" id="file" multiple>
-  <button id="upload">上传</button>
-</body>
+  <script>
+    const CHUNK_SIZE = 5 * 1024 * 1024; // 5MB
 
-<script>
+    function uploadFile() {
+      const file = document.getElementById("file").files[0];
+      console.log("上传文件", file.name);
+      if (!file) {
+        return;
+      }
 
-  const CHUNK_SIZE = 5 * 1024 * 1024; // 5MB
+      const totalSize = file.size;
+      const totalChunks = Math.ceil(totalSize / CHUNK_SIZE);
+      let currentChunk = 0;
+      const chunks = [];
 
+      function uploadChunk() {
+        console.log("上传第", currentChunk, "块");
+        if (currentChunk >= totalChunks) {
+          console.log("上传完成");
+          return;
+        }
+        const start = currentChunk * CHUNK_SIZE;
+        const end = Math.min(totalSize, start + CHUNK_SIZE);
+        const chunk = file.slice(start, end);
 
-  function uploadFile() {
-    const file = document.getElementById('file').files[0];
-    console.log('上传文件', file.name)
-    if (!file) {
-      return
+        const formData = new FormData();
+        formData.append("file", chunk);
+        formData.append("index", currentChunk);
+        formData.append("totalChunks", totalChunks);
+        formData.append("filename", file.name);
+
+        // fetch('/api/upload', {
+        //   method: 'POST',
+        //   body: formData
+        // }).then(res => {
+        //   if (res.ok) {
+        //     currentChunk++;
+        //     uploadChunk() // 递归上传下一块
+        //   } else {
+        //     throw new Error('上传失败')
+        //   }
+        // }).catch(err => {
+        //   console.error(err)
+        // });
+
+        currentChunk++;
+        uploadChunk(); // 递归上传下一块
+      }
+
+      // 开始上传
+      uploadChunk();
     }
 
-    const totalSize = file.size
-    const totalChunks = Math.ceil(totalSize / CHUNK_SIZE)
-    let currentChunk = 0
-    const chunks = []
-
-    function uploadChunk() {
-      console.log('上传第', currentChunk, '块')
-      if (currentChunk >= totalChunks) {
-        console.log('上传完成')
-        return
-      }
-      const start = currentChunk * CHUNK_SIZE
-      const end = Math.min(totalSize, start + CHUNK_SIZE)
-      const chunk = file.slice(start, end)
-
-      const formData = new FormData()
-      formData.append('file', chunk)
-      formData.append('index', currentChunk)
-      formData.append('totalChunks', totalChunks)
-      formData.append('filename', file.name)
-
-      // fetch('/api/upload', {
-      //   method: 'POST',
-      //   body: formData
-      // }).then(res => {
-      //   if (res.ok) {
-      //     currentChunk++;
-      //     uploadChunk() // 递归上传下一块
-      //   } else {
-      //     throw new Error('上传失败')
-      //   }
-      // }).catch(err => {
-      //   console.error(err)
-      // });
-
-      currentChunk++;
-      uploadChunk() // 递归上传下一块
-    };
-
-    // 开始上传
-    uploadChunk();
-  };
-
-  document.getElementById('upload').addEventListener('click', uploadFile);
-</script>
-
+    document.getElementById("upload").addEventListener("click", uploadFile);
+  </script>
 </html>
 ```
 
@@ -127,43 +123,43 @@ sidebar:
 
 ```js
 function uploadFile(file) {
-    const chunkSize = 5 * 1024 * 1024; // 5MB
-    const chunks = Math.ceil(file.size / chunkSize);
-    const concurrency = 3; // 并发数
-    let currentChunk = 0;
+  const chunkSize = 5 * 1024 * 1024; // 5MB
+  const chunks = Math.ceil(file.size / chunkSize);
+  const concurrency = 3; // 并发数
+  let currentChunk = 0;
 
-    function uploadChunk(index) {
-        const offset = index * chunkSize;
-        const chunk = file.slice(offset, offset + chunkSize);
-        const formData = new FormData();
-        formData.append('file', chunk);
-        formData.append('offset', offset);
-        formData.append('totalSize', file.size);
+  function uploadChunk(index) {
+    const offset = index * chunkSize;
+    const chunk = file.slice(offset, offset + chunkSize);
+    const formData = new FormData();
+    formData.append("file", chunk);
+    formData.append("offset", offset);
+    formData.append("totalSize", file.size);
 
-        return fetch('/upload', {
-            method: 'POST',
-            body: formData
-        });
+    return fetch("/upload", {
+      method: "POST",
+      body: formData,
+    });
+  }
+
+  function uploadNextChunk() {
+    if (currentChunk >= chunks) {
+      console.log("Upload complete");
+      return;
     }
 
-    function uploadNextChunk() {
-        if (currentChunk >= chunks) {
-            console.log('Upload complete');
-            return;
-        }
-
-        const promises = [];
-        for (let i = 0; i < concurrency && currentChunk < chunks; i++) {
-            promises.push(uploadChunk(currentChunk));
-            currentChunk++;
-        }
-
-        Promise.all(promises).then(() => {
-            uploadNextChunk();
-        });
+    const promises = [];
+    for (let i = 0; i < concurrency && currentChunk < chunks; i++) {
+      promises.push(uploadChunk(currentChunk));
+      currentChunk++;
     }
 
-    uploadNextChunk();
+    Promise.all(promises).then(() => {
+      uploadNextChunk();
+    });
+  }
+
+  uploadNextChunk();
 }
 ```
 
@@ -175,25 +171,25 @@ function uploadFile(file) {
 
 ```js
 function uploadFile(file) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/upload', true);
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "/upload", true);
 
-    xhr.upload.onprogress = (event) => {
-        if (event.lengthComputable) {
-            const percentComplete = (event.loaded / event.total) * 100;
-            console.log(`Upload progress: ${percentComplete}%`);
-        }
-    };
+  xhr.upload.onprogress = (event) => {
+    if (event.lengthComputable) {
+      const percentComplete = (event.loaded / event.total) * 100;
+      console.log(`Upload progress: ${percentComplete}%`);
+    }
+  };
 
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            console.log('Upload complete');
-        }
-    };
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      console.log("Upload complete");
+    }
+  };
 
-    const formData = new FormData();
-    formData.append('file', file);
-    xhr.send(formData);
+  const formData = new FormData();
+  formData.append("file", file);
+  xhr.send(formData);
 }
 ```
 
@@ -225,39 +221,40 @@ function uploadFile(file) {
 
 ```js
 async function downloadFile(url, fileName, chunkSize = 5 * 1024 * 1024) {
-    let offset = 0;
-    const chunks = [];
+  let offset = 0;
+  const chunks = [];
 
-    while (true) {
-        const end = offset + chunkSize - 1;
-        const headers = { Range: `bytes=${offset}-${end}` };
-        const response = await fetch(url, { headers });
+  while (true) {
+    const end = offset + chunkSize - 1;
+    const headers = { Range: `bytes=${offset}-${end}` };
+    const response = await fetch(url, { headers });
 
-        if (response.status === 206) { // 206 Partial Content
-            const blob = await response.blob();
-            chunks.push(blob);
-            offset += chunkSize;
-        } else if (response.status === 200) {
-            // 如果服务器不支持分片下载，直接下载整个文件
-            const blob = await response.blob();
-            chunks.push(blob);
-            break;
-        } else {
-            throw new Error('Failed to download file');
-        }
+    if (response.status === 206) {
+      // 206 Partial Content
+      const blob = await response.blob();
+      chunks.push(blob);
+      offset += chunkSize;
+    } else if (response.status === 200) {
+      // 如果服务器不支持分片下载，直接下载整个文件
+      const blob = await response.blob();
+      chunks.push(blob);
+      break;
+    } else {
+      throw new Error("Failed to download file");
     }
+  }
 
-    // 合并分片
-    const fullBlob = new Blob(chunks);
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(fullBlob);
-    link.download = fileName;
-    link.click();
-    URL.revokeObjectURL(link.href);
+  // 合并分片
+  const fullBlob = new Blob(chunks);
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(fullBlob);
+  link.download = fileName;
+  link.click();
+  URL.revokeObjectURL(link.href);
 }
 
 // 使用
-downloadFile('https://example.com/large-file.zip', 'large-file.zip');
+downloadFile("https://example.com/large-file.zip", "large-file.zip");
 ```
 
 ### 流式下载
@@ -273,27 +270,27 @@ downloadFile('https://example.com/large-file.zip', 'large-file.zip');
 
 ```js
 async function streamDownload(url, fileName) {
-    const response = await fetch(url);
-    const reader = response.body.getReader();
-    const chunks = [];
+  const response = await fetch(url);
+  const reader = response.body.getReader();
+  const chunks = [];
 
-    while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        chunks.push(value);
-    }
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+  }
 
-    // 合并数据
-    const fullBlob = new Blob(chunks);
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(fullBlob);
-    link.download = fileName;
-    link.click();
-    URL.revokeObjectURL(link.href);
+  // 合并数据
+  const fullBlob = new Blob(chunks);
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(fullBlob);
+  link.download = fileName;
+  link.click();
+  URL.revokeObjectURL(link.href);
 }
 
 // 使用
-streamDownload('https://example.com/large-file.zip', 'large-file.zip');
+streamDownload("https://example.com/large-file.zip", "large-file.zip");
 ```
 
 ### 断点续传（Resumable Download）
@@ -309,52 +306,53 @@ streamDownload('https://example.com/large-file.zip', 'large-file.zip');
 
 ```js
 async function resumeDownload(url, fileName, chunkSize = 5 * 1024 * 1024) {
-    let offset = 0;
-    const chunks = [];
+  let offset = 0;
+  const chunks = [];
 
-    // 检查本地是否有部分下载的文件
-    const savedBlob = localStorage.getItem(fileName);
-    if (savedBlob) {
-        const blob = new Blob([savedBlob]);
-        offset = blob.size;
-        chunks.push(blob);
+  // 检查本地是否有部分下载的文件
+  const savedBlob = localStorage.getItem(fileName);
+  if (savedBlob) {
+    const blob = new Blob([savedBlob]);
+    offset = blob.size;
+    chunks.push(blob);
+  }
+
+  while (true) {
+    const end = offset + chunkSize - 1;
+    const headers = { Range: `bytes=${offset}-${end}` };
+    const response = await fetch(url, { headers });
+
+    if (response.status === 206) {
+      // 206 Partial Content
+      const blob = await response.blob();
+      chunks.push(blob);
+      offset += chunkSize;
+
+      // 保存已下载的部分到本地
+      const fullBlob = new Blob(chunks);
+      localStorage.setItem(fileName, await fullBlob.text());
+    } else if (response.status === 200) {
+      // 如果服务器不支持分片下载，直接下载整个文件
+      const blob = await response.blob();
+      chunks.push(blob);
+      break;
+    } else {
+      throw new Error("Failed to download file");
     }
+  }
 
-    while (true) {
-        const end = offset + chunkSize - 1;
-        const headers = { Range: `bytes=${offset}-${end}` };
-        const response = await fetch(url, { headers });
-
-        if (response.status === 206) { // 206 Partial Content
-            const blob = await response.blob();
-            chunks.push(blob);
-            offset += chunkSize;
-
-            // 保存已下载的部分到本地
-            const fullBlob = new Blob(chunks);
-            localStorage.setItem(fileName, await fullBlob.text());
-        } else if (response.status === 200) {
-            // 如果服务器不支持分片下载，直接下载整个文件
-            const blob = await response.blob();
-            chunks.push(blob);
-            break;
-        } else {
-            throw new Error('Failed to download file');
-        }
-    }
-
-    // 合并分片
-    const fullBlob = new Blob(chunks);
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(fullBlob);
-    link.download = fileName;
-    link.click();
-    URL.revokeObjectURL(link.href);
-    localStorage.removeItem(fileName);
+  // 合并分片
+  const fullBlob = new Blob(chunks);
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(fullBlob);
+  link.download = fileName;
+  link.click();
+  URL.revokeObjectURL(link.href);
+  localStorage.removeItem(fileName);
 }
 
 // 使用
-resumeDownload('https://example.com/large-file.zip', 'large-file.zip');
+resumeDownload("https://example.com/large-file.zip", "large-file.zip");
 ```
 
 ### 其他优化

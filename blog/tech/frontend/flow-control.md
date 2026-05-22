@@ -2,7 +2,7 @@
 title: "前端流量控制常用手段"
 description: "前端流量控制笔记，整理防抖、节流、请求队列等常见手段的实现方式和注意事项。"
 date: "2025-03-17T11:40:19+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -12,7 +12,7 @@ sidebar:
   relatedPosts: true
 ---
 
-> [!abstract]+  问题描述
+> [!abstract]+ 问题描述
 > 如何解决页面请求接口的大规模并发问题？
 
 在需要处理大规模请求的情境中，做好流量控制可以提升系统稳定性和性能。
@@ -27,22 +27,22 @@ sidebar:
 
 ```js
 function debounce(fn, wait) {
-    let timeout;
-    return function () {
-        let context = this;
-        let args = arguments;
-        clearTimeout(timeout);
-        timeout = setTimeout(function () {
-            fn.apply(context, args);
-        }, wait);
-    }
+  let timeout;
+  return function () {
+    let context = this;
+    let args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      fn.apply(context, args);
+    }, wait);
+  };
 }
 
 const sample = function () {
-    console.log("xxx");
-}
+  console.log("xxx");
+};
 
-window.addEventListener('resize', debounce(sample, 300));
+window.addEventListener("resize", debounce(sample, 300));
 ```
 
 #### 为什么在  `debounce`  函数中使用  `let`？
@@ -70,13 +70,13 @@ window.addEventListener('resize', debounce(sample, 300));
 
 > [!tip]+ var、let和const
 > **作用域区别**：`var`是函数作用域，`let`和`const`是块级作用域。
-> 
+>
 > **变量升级**：`var`可以升级（初始值是`undefined`），`let`和`const`不能变量升级，是暂时性死区。
-> 
+>
 > _变量提升指的是在代码执行前，js 引擎将变量和函数的声明提示到作用域的顶部，也就是说可以在声明之前使用变量或函数，但赋值操作会保留在原位置。_
-> 
+>
 > Example：变量
-> 
+>
 > ```js
 > console.log(a); // 输出: undefined
 > var a = 10;
@@ -84,7 +84,7 @@ window.addEventListener('resize', debounce(sample, 300));
 > ```
 >
 > 实际执行顺序：
-> 
+>
 > ```js
 > var a;
 > console.log(a); // 输出: undefined
@@ -93,29 +93,29 @@ window.addEventListener('resize', debounce(sample, 300));
 > ```
 >
 > Example：函数
-> 
+>
 > ```js
 > foo(); // 输出: "Hello"
 > function foo() {
->     console.log("Hello");
+>   console.log("Hello");
 > }
 > ```
 >
 > 实际执行顺序：
-> 
+>
 > ```js
 > function foo() {
->     console.log("Hello");
+>   console.log("Hello");
 > }
 > foo(); // 输出: "Hello"
 > ```
-> 
+>
 > **重新赋值**：`var`和`let`可以重新赋值，`const`不可以。
-> 
+>
 > **适用场景**：
-> 
+>
 > `var`：旧代码、全局变量
-> 
+>
 > `let`：块级作用域、需要重新赋值
 >
 > `const`：常量、不需要重新赋值
@@ -128,23 +128,23 @@ window.addEventListener('resize', debounce(sample, 300));
 
 ```js
 function throttle(fn, limit) {
-    let inthrottle;
-    return function () {
-        let context = this;
-        let args = arguments;
-        if (!inthrottle) {
-            fn.apply(context, args);
-            inthrottle = true;
-            setTimeout(() => {
-                inthrottle = false;
-            }, limit);
-        }
+  let inthrottle;
+  return function () {
+    let context = this;
+    let args = arguments;
+    if (!inthrottle) {
+      fn.apply(context, args);
+      inthrottle = true;
+      setTimeout(() => {
+        inthrottle = false;
+      }, limit);
     }
+  };
 }
 
-const sample = function () { };
+const sample = function () {};
 
-window.addEventListener('scroll', throttle(sample, 2000));
+window.addEventListener("scroll", throttle(sample, 2000));
 ```
 
 ### 注意事项
@@ -165,8 +165,8 @@ window.addEventListener('scroll', throttle(sample, 2000));
 class RequestQueue {
   constructor(maxConcurrent) {
     this.maxConcurrent = maxConcurrent; // 最大并发数
-    this.queue = [];  // 请求队列
-    this.currentlyRunning = 0;  // 当前正在运行的请求数
+    this.queue = []; // 请求队列
+    this.currentlyRunning = 0; // 当前正在运行的请求数
   }
 
   add(request) {
@@ -174,20 +174,22 @@ class RequestQueue {
       this.queue.push({ request, resolve, reject });
       this.processQueue();
     });
-  };
+  }
 
   processQueue() {
     if (this.queue.length > 0 && this.currentlyRunning < this.maxConcurrent) {
       const { request, resolve, reject } = this.queue.shift();
       this.currentlyRunning++;
-      request().then(resolve).catch(reject).finally(() => {
-        this.currentlyRunning--;
-        this.processQueue();
-      });
-    };
-  };
+      request()
+        .then(resolve)
+        .catch(reject)
+        .finally(() => {
+          this.currentlyRunning--;
+          this.processQueue();
+        });
+    }
+  }
 }
-
 
 function fetchData(url) {
   return new Promise((resolve, reject) => {
@@ -197,14 +199,14 @@ function fetchData(url) {
   });
 }
 
-const urls = ['url1', 'url2', 'url3', 'url4', 'url5'];
+const urls = ["url1", "url2", "url3", "url4", "url5"];
 
-const requests = urls.map(url => () => fetchData(url));
+const requests = urls.map((url) => () => fetchData(url));
 const myRequestQueue = new RequestQueue(2);
 
-Promise.all(requests.map(request => myRequestQueue.add(request)))
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
+Promise.all(requests.map((request) => myRequestQueue.add(request)))
+  .then((data) => console.log(data))
+  .catch((err) => console.error(err));
 
 // 1s 后输出
 // [ 'Data from url1', 'Data from url2', 'Data from url3', 'Data from url4', 'Data from url5' ]
@@ -230,22 +232,23 @@ function loadMoreData() {
     .then((response) => response.json())
     .then((data) => {
       // 处理数据并更新页面
-      const container = document.getElementById('container');
+      const container = document.getElementById("container");
       data.forEach((item) => {
-        const div = document.createElement('div');
+        const div = document.createElement("div");
         div.innerHTML = item.name;
         container.appendChild(div);
       });
       currentPage++;
       isLoading = false;
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.error(error);
       isLoading = false;
     });
 }
 
 // 监听滚动事件
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
   if (scrollTop + clientHeight >= scrollHeight) {
     loadMoreData();
@@ -263,12 +266,16 @@ loadMoreData();
 ### 实现
 
 ```js
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const lazyImages = document.querySelectorAll("img.lazy");
 
-  const lazyLoad = function() {
-    lazyImages.forEach(img => {
-      if (img.getBoundingClientRect().top < window.innerHeight && img.getBoundingClientRect().bottom > 0 && getComputedStyle(img).display !== "none") {
+  const lazyLoad = function () {
+    lazyImages.forEach((img) => {
+      if (
+        img.getBoundingClientRect().top < window.innerHeight &&
+        img.getBoundingClientRect().bottom > 0 &&
+        getComputedStyle(img).display !== "none"
+      ) {
         img.src = img.dataset.src;
         img.classList.remove("lazy");
       }
@@ -288,8 +295,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 ```js
 function fetchWithRetry(url, options, retries = 3) {
-  return fetch(url, options)
-    .catch(err => retries > 0 ? fetchWithRetry(url, options, retries - 1) : Promise.reject(err));
+  return fetch(url, options).catch((err) =>
+    retries > 0
+      ? fetchWithRetry(url, options, retries - 1)
+      : Promise.reject(err),
+  );
 }
 ```
 
@@ -334,7 +344,7 @@ class RateLimiter {
 
   run() {
     const now = Date.now();
-    this.times = this.times.filter(time => now - time < this.interval);
+    this.times = this.times.filter((time) => now - time < this.interval);
 
     if (this.times.length < this.limit && this.queue.length) {
       const request = this.queue.shift();

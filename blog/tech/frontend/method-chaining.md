@@ -2,7 +2,7 @@
 title: "JavaScript 链式调用设计模式 | Vue举例"
 description: "JavaScript 链式调用设计笔记，以 Vue createApp 和 Promise 为例讲解链式 API 的实现方式。"
 date: "2025-03-17T09:26:02+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -17,43 +17,43 @@ sidebar:
 ### 代码示例
 
 ```ts
-import { createApp } from 'vue';
+import { createApp } from "vue";
 
 // 创建一个 Vue 应用实例
 const app = createApp({
   data() {
     return {
-      message: 'Hello, Vue!'
+      message: "Hello, Vue!",
     };
   },
   methods: {
     handleClick() {
-      alert('Button clicked!');
-    }
-  }
+      alert("Button clicked!");
+    },
+  },
 });
 
 // 链式调用：配置应用并绑定事件
 app
-  .component('MyButton', {
+  .component("MyButton", {
     template: `<button @click="handleClick">Click Me</button>`,
     methods: {
       handleClick() {
-        this.$emit('custom-click');
-      }
-    }
+        this.$emit("custom-click");
+      },
+    },
   })
-  .directive('highlight', {
+  .directive("highlight", {
     mounted(el) {
-      el.style.backgroundColor = 'yellow';
-    }
+      el.style.backgroundColor = "yellow";
+    },
   })
   .mixin({
     created() {
-      console.log('Mixin created hook');
-    }
+      console.log("Mixin created hook");
+    },
   })
-  .mount('#app'); // 挂载到 DOM
+  .mount("#app"); // 挂载到 DOM
 ```
 
 ### 解释
@@ -80,7 +80,7 @@ app
 #### 语法
 
 ```javascript
-app.use(plugin, options)
+app.use(plugin, options);
 ```
 
 - **`plugin`**: 要安装的插件，可以是一个对象或函数。
@@ -92,14 +92,16 @@ app.use(plugin, options)
 
 ```js
 function use(plugin, options) {
-  if (typeof plugin.install === 'function') {
+  if (typeof plugin.install === "function") {
     // 如果插件是一个对象，并且提供了 install 方法
     plugin.install(this, options);
-  } else if (typeof plugin === 'function') {
+  } else if (typeof plugin === "function") {
     // 如果插件是一个函数
     plugin(this, options);
   } else {
-    throw new Error('Plugin must be a function or an object with an install method.');
+    throw new Error(
+      "Plugin must be a function or an object with an install method.",
+    );
   }
   return this; // 返回应用实例，支持链式调用
 }
@@ -111,22 +113,22 @@ function use(plugin, options) {
 // 自定义插件
 const myPlugin = {
   install(app, options) {
-    console.log('My plugin is installed with options:', options);
+    console.log("My plugin is installed with options:", options);
     // 添加全局方法或属性
     app.config.globalProperties.$myMethod = () => {
-      console.log('Hello from my plugin!');
+      console.log("Hello from my plugin!");
     };
     // 注册全局组件
-    app.component('my-component', {
-      template: '<div>My Custom Component</div>'
+    app.component("my-component", {
+      template: "<div>My Custom Component</div>",
     });
-  }
+  },
 };
 
 // 使用插件
 createApp(App)
   .use(myPlugin, { someOption: true }) // 安装自定义插件
-  .mount('#app');
+  .mount("#app");
 ```
 
 ## Promise 中的链式调用
@@ -194,20 +196,20 @@ promise2 必须是一个新的 promise。
 #### 代码示例
 
 ```js
-const PENDING = 'pending';
-const FULFILLED = 'fulfilled';
-const REJECTED = 'rejected';
+const PENDING = "pending";
+const FULFILLED = "fulfilled";
+const REJECTED = "rejected";
 
 function isFunction(fn) {
-  return Object.prototype.toString.call(fn) === '[object Function]';
+  return Object.prototype.toString.call(fn) === "[object Function]";
 }
 
 function myPromise(fn) {
   if (!this || this.constructor !== myPromise) {
-    throw new TypeError('Promise must be called with new');
+    throw new TypeError("Promise must be called with new");
   }
   if (!isFunction(fn)) {
-    throw new TypeError('Promise resolver undefined is not a function');
+    throw new TypeError("Promise resolver undefined is not a function");
   }
 
   this.status = PENDING;
@@ -216,23 +218,23 @@ function myPromise(fn) {
   this.onFulfilledCallbacks = [];
   this.onRejectedCallbacks = [];
 
-  const resolve = value => {
+  const resolve = (value) => {
     if (this.status === PENDING) {
       this.status = FULFILLED;
       this.value = value;
 
       // 发布
-      this.onFulfilledCallbacks.forEach(fn => fn());
+      this.onFulfilledCallbacks.forEach((fn) => fn());
     }
   };
 
-  const reject = reason => {
+  const reject = (reason) => {
     if (this.status === PENDING) {
       this.status = REJECTED;
       this.reason = reason;
 
       // 发布
-      this.onRejectedCallbacks.forEach(fn => fn());
+      this.onRejectedCallbacks.forEach((fn) => fn());
     }
   };
 
@@ -246,8 +248,12 @@ function myPromise(fn) {
 // 添加 then 原型方法
 myPromise.prototype.then = function (onFulfilled, onRejected) {
   // 处理边界
-  onFulfilled = isFunction(onFulfilled) ? onFulfilled : value => value;
-  onRejected = isFunction(onRejected) ? onRejected : reason => { throw reason };
+  onFulfilled = isFunction(onFulfilled) ? onFulfilled : (value) => value;
+  onRejected = isFunction(onRejected)
+    ? onRejected
+    : (reason) => {
+        throw reason;
+      };
 
   // 返回一个新的 Promise
   const promise2 = new myPromise((resolve, reject) => {
@@ -298,24 +304,25 @@ myPromise.prototype.then = function (onFulfilled, onRejected) {
   return promise2;
 };
 
-
 // 测试
 const promise = new myPromise((resolve, reject) => {
   setTimeout(() => {
-    resolve('success');
+    resolve("success");
   }, 1000);
-
 });
 
-promise.then(value => {
-  console.log(value);
-  return 'msg from then1';
-}).then(value => {
-  console.log(value);
-  return 'msg from then2';
-}).then(value => {
-  console.log(value);
-});
+promise
+  .then((value) => {
+    console.log(value);
+    return "msg from then1";
+  })
+  .then((value) => {
+    console.log(value);
+    return "msg from then2";
+  })
+  .then((value) => {
+    console.log(value);
+  });
 ```
 
 ## 实现链式调用
@@ -348,48 +355,48 @@ Learning Math
 
 ```js
 class Student {
-    constructor(name) {
-        this.name = name;
-        this.tasks = []; // 任务队列
-        this.tasks.push(() => {
-            console.log(`I am ${this.name}`);
-            this.next(); // 执行下一个任务
-        });
-        setTimeout(() => this.next(), 0); // 异步启动任务队列
-    }
+  constructor(name) {
+    this.name = name;
+    this.tasks = []; // 任务队列
+    this.tasks.push(() => {
+      console.log(`I am ${this.name}`);
+      this.next(); // 执行下一个任务
+    });
+    setTimeout(() => this.next(), 0); // 异步启动任务队列
+  }
 
-    next() {
-        const task = this.tasks.shift(); // 取出队列中的第一个任务
-        task && task(); // 如果任务存在，则执行
-    }
+  next() {
+    const task = this.tasks.shift(); // 取出队列中的第一个任务
+    task && task(); // 如果任务存在，则执行
+  }
 
-    rest(seconds) {
-        this.tasks.push(() => {
-            setTimeout(() => {
-                console.log(`After ${seconds} seconds`);
-                this.next(); // 执行下一个任务
-            }, seconds * 1000);
-        });
-        return this; // 返回this以支持链式调用
-    }
+  rest(seconds) {
+    this.tasks.push(() => {
+      setTimeout(() => {
+        console.log(`After ${seconds} seconds`);
+        this.next(); // 执行下一个任务
+      }, seconds * 1000);
+    });
+    return this; // 返回this以支持链式调用
+  }
 
-    restFirst(seconds) {
-        this.tasks.unshift(() => {
-            setTimeout(() => {
-                console.log(`After ${seconds} seconds`);
-                this.next(); // 执行下一个任务
-            }, seconds * 1000);
-        });
-        return this; // 返回this以支持链式调用
-    }
+  restFirst(seconds) {
+    this.tasks.unshift(() => {
+      setTimeout(() => {
+        console.log(`After ${seconds} seconds`);
+        this.next(); // 执行下一个任务
+      }, seconds * 1000);
+    });
+    return this; // 返回this以支持链式调用
+  }
 
-    learn(subject) {
-        this.tasks.push(() => {
-            console.log(`Learning ${subject}`);
-            this.next(); // 执行下一个任务
-        });
-        return this; // 返回this以支持链式调用
-    }
+  learn(subject) {
+    this.tasks.push(() => {
+      console.log(`Learning ${subject}`);
+      this.next(); // 执行下一个任务
+    });
+    return this; // 返回this以支持链式调用
+  }
 }
 
 // 测试用例
@@ -434,37 +441,37 @@ Observer（观察者）
 
 ```js
 class Subject {
-    constructor() {
-        this.observers = [];
-    }
+  constructor() {
+    this.observers = [];
+  }
 
-    attach(observer) {
-        this.observers.push(observer);
-    }
+  attach(observer) {
+    this.observers.push(observer);
+  }
 
-    detach(observer) {
-        this.observers = this.observers.filter(obs => obs !== observer);
-    }
+  detach(observer) {
+    this.observers = this.observers.filter((obs) => obs !== observer);
+  }
 
-    notify() {
-        this.observers.forEach(observer => observer.update());
-    }
+  notify() {
+    this.observers.forEach((observer) => observer.update());
+  }
 }
 
 class Observer {
-    constructor(name) {
-        this.name = name;
-    }
+  constructor(name) {
+    this.name = name;
+  }
 
-    update() {
-        console.log(`${this.name} received an update!`);
-    }
+  update() {
+    console.log(`${this.name} received an update!`);
+  }
 }
 
 // 使用
 const subject = new Subject();
-const observer1 = new Observer('Observer 1');
-const observer2 = new Observer('Observer 2');
+const observer1 = new Observer("Observer 1");
+const observer2 = new Observer("Observer 2");
 
 subject.attach(observer1);
 subject.attach(observer2);
@@ -494,7 +501,7 @@ class EventBus {
 
   subscribe(event, callback) {
     if (!this.events[event]) {
-      this.events[event] = [];  // 初始化事件队列
+      this.events[event] = []; // 初始化事件队列
     }
     this.events[event].push(callback);
   }
@@ -505,7 +512,7 @@ class EventBus {
       return;
     }
     if (this.events[event]) {
-      this.events[event].forEach(callback => callback(data));
+      this.events[event].forEach((callback) => callback(data));
     }
   }
 }
@@ -514,16 +521,16 @@ class EventBus {
 const eventBus = new EventBus();
 
 // 订阅者
-eventBus.subscribe('news', data => {
+eventBus.subscribe("news", (data) => {
   console.log(`Subscriber 1 received news: ${data}`);
 });
 
-eventBus.subscribe('news', data => {
+eventBus.subscribe("news", (data) => {
   console.log(`Subscriber 2 received news: ${data}`);
 });
 
 // 发布者
-eventBus.publish('news', 'Breaking news!');
+eventBus.publish("news", "Breaking news!");
 // 输出：
 // Subscriber 1 received news: Breaking news!
 // Subscriber 2 received news: Breaking news!

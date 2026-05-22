@@ -2,7 +2,7 @@
 title: "为最近笔记添加排序和筛选"
 description: "记录为最近笔记列表添加排序和筛选功能的配置方式与实现思路。"
 date: "2025-08-02T03:55:35+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -55,28 +55,28 @@ Component.DesktopOnly(Component.RecentNotes({
 ```ts title="frontmatter.ts" showLineNumbers warp {11-12}
 declare module "vfile" {
   interface DataMap {
-    aliases: FullSlug[]
+    aliases: FullSlug[];
     frontmatter: { [key: string]: unknown } & {
-      title: string
+      title: string;
     } & Partial<{
-      tags: string[]
-      aliases: string[]
-      modified: string
-      created: string
-      date: string
-      lastmod: string
-      published: string
-      description: string
-      socialDescription: string
-      publish: boolean | string
-      draft: boolean | string
-      lang: string
-      enableToc: string
-      cssclasses: string[]
-      socialImage: string
-      featuredImage: string
-      comments: boolean | string
-    }>
+        tags: string[];
+        aliases: string[];
+        modified: string;
+        created: string;
+        date: string;
+        lastmod: string;
+        published: string;
+        description: string;
+        socialDescription: string;
+        publish: boolean | string;
+        draft: boolean | string;
+        lang: string;
+        enableToc: string;
+        cssclasses: string[];
+        socialImage: string;
+        featuredImage: string;
+        comments: boolean | string;
+      }>;
   }
 }
 ```

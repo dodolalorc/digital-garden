@@ -2,7 +2,7 @@
 title: "🧪CS-APP Datalab"
 description: "CS:APP Data Lab 实验记录，整理环境测评、单元测试命令和各个 bit-level 函数的实现。"
 date: "2024-07-04T20:49:31+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -59,8 +59,8 @@ make && ./btest -f bitXnor -1 7 -2 0xf
 
 ```c
 //1
-/* 
- * bitXor - x^y using only ~ and & 
+/*
+ * bitXor - x^y using only ~ and &
  *   Example: bitXor(4, 5) = 1
  *   Legal ops: ~ &
  *   Max ops: 14
@@ -78,8 +78,8 @@ int bitXor(int x, int y) {
 ### 代码
 
 ```c
-/* 
- * tmin - return minimum two's complement integer 
+/*
+ * tmin - return minimum two's complement integer
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 4
  *   Rating: 1
@@ -96,6 +96,7 @@ int tmin(void) {
 题目提示不允许使用移位操作。
 
 注意到：
+
 $$
 \begin{aligned}
 Tmax=0x7fffffff,Tmin=0x80000000\\
@@ -105,16 +106,19 @@ so,that:\\
 -(\sim Tmax) = Tmax + 1 = \sim Tmax\\
 \end{aligned}
 $$
+
 也就是说，假如`~x`的相反数与`~x`相等，则满足`x=Tmax`。
 
 注意除了`Tmax`拥有这个性质，当`x=-1`时：
+
 $$
 \begin{aligned}
-x=0xffffffff\\ 
+x=0xffffffff\\
 \sim x=0x00000000\\
 -(\sim x)=\sim (\sim x)+1 = x+1 = 0x00000000
 \end{aligned}
 $$
+
 也满足这个上述特点，需要排除。
 
 ### 代码
@@ -122,7 +126,7 @@ $$
 ```c
 /*
  * isTmax - returns 1 if x is the maximum, two's complement number,
- *     and 0 otherwise 
+ *     and 0 otherwise
  *   Legal ops: ! ~ & ^ | +
  *   Max ops: 10
  *   Rating: 1
@@ -135,15 +139,16 @@ int isTmax(int x) {
 > [!tip]+ 提示
 > 注意返回值是`int`型的，所以需要使用`!!`将结果转换为0或1。
 
-
 ## 4. allOddBits
 
 当$x$中所有奇数位都为$1$时返回`true`。
 
 奇数位都为$1$的数形如：
+
 $$
 x=0b1x_{30}1x_{28}1...1x_{2}1x_{0}
 $$
+
 思路是构造偶数位都为$1$的掩码`0x55555555`，再与$x$按位取或，若能构造出`0xffffffff`则复合要求。
 
 由于实验要求不允许使用长度超过8位的常量，所以通过移位操作来构造掩码。
@@ -151,7 +156,7 @@ $$
 ### 代码
 
 ```c
-/* 
+/*
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
  *   where bits are numbered from 0 (least significant) to 31 (most significant)
  *   Examples allOddBits(0xFFFFFFFD) = 0, allOddBits(0xAAAAAAAA) = 1
@@ -171,6 +176,7 @@ int allOddBits(int x) {
 返回$x$的相反数。
 
 这个操作在第三个实验里其实已经使用过了。
+
 $$
 -x=\sim x + 1
 $$
@@ -178,8 +184,8 @@ $$
 ### 代码
 
 ```c
-/* 
- * negate - return -x 
+/*
+ * negate - return -x
  *   Example: negate(1) = -1.
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 5
@@ -201,7 +207,7 @@ int negate(int x) {
 ### 代码
 
 ```c
-/* 
+/*
  * isAsciiDigit - return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9')
  *   Example: isAsciiDigit(0x35) = 1.
  *            isAsciiDigit(0x3a) = 0.
@@ -228,8 +234,8 @@ int isAsciiDigit(int x) {
 ### 代码
 
 ```c
-/* 
- * conditional - same as x ? y : z 
+/*
+ * conditional - same as x ? y : z
  *   Example: conditional(2,4,5) = 4
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 16
@@ -242,8 +248,6 @@ int conditional(int x, int y, int z) {
 }
 ```
 
-
-
 ## 8. isLessOrEqual
 
 判断是否符合$x\leq y$的关系。
@@ -253,8 +257,8 @@ int conditional(int x, int y, int z) {
 ### 代码
 
 ```c
-/* 
- * isLessOrEqual - if x <= y  then return 1, else return 0 
+/*
+ * isLessOrEqual - if x <= y  then return 1, else return 0
  *   Example: isLessOrEqual(4,5) = 1.
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 24
@@ -269,8 +273,6 @@ int isLessOrEqual(int x, int y) {
 }
 ```
 
-
-
 ## 9. logicalNeg
 
 实现逻辑取反，$x$非0返回0，$x$为0返回1。
@@ -282,24 +284,23 @@ int isLessOrEqual(int x, int y) {
 ### 代码
 
 ```c
-/* 
- * logicalNeg - implement the ! operator, using all of 
+/*
+ * logicalNeg - implement the ! operator, using all of
  *              the legal operators except !
  *   Examples: logicalNeg(3) = 0, logicalNeg(0) = 1
  *   Legal ops: ~ & ^ | + << >>
  *   Max ops: 12
- *   Rating: 4 
+ *   Rating: 4
  */
 int logicalNeg(int x) {
   return (((~x + 1) | x) >> 31) + 1;
 }
 ```
 
-
-
 ## 10. howManyBits
 
 计算出表示$x$​需要的最少补码位数。
+
 $$
 \begin{aligned}
 0=0b0,1bit\\
@@ -311,11 +312,13 @@ $$
 -3=0b101,3bits
 \end{aligned}
 $$
+
 如果是正数的话`x`补码形如：`0x00001...`，所需补码位数是从左向右第一个1的位置在+1（符号位），负数的话`x`补码形如：`0x11110...`，取反之后是`0x00001...`，所需位数是从左向右第一个1的位置+1。
 
 不能通过循环来从左向右找，尝试二分找第一个1的位置。
 
 `int`型有32位，逐渐二分为16、8、4、2、1位。
+
 $$
 \begin{aligned}
 &x = 0b0001,1...,....,....,....,....,....,....\\
@@ -325,6 +328,7 @@ loop1:& !!(x>>16)=1,b16=16\\
 loop2:&...
 \end{aligned}
 $$
+
 最后统计完毕之后要+1符号位。
 
 ### 代码
@@ -360,8 +364,6 @@ int howManyBits(int x) {
 }
 ```
 
-
-
 ## 11. floatScale2
 
 求一个float浮点数乘2之后的值。
@@ -375,16 +377,16 @@ int howManyBits(int x) {
 
 通过定义先按指数是否为`0x00000000`或`0x11111111`、`≠0 & ≠255`分类。
 
-* 对规格化数进行指数+1（若+1后为255则返回无穷大）
+- 对规格化数进行指数+1（若+1后为255则返回无穷大）
 
-* 非规格化数保持符号位不变，左移一位（注意：若尾数最左边一位为1时，乘2后恰好是规格化数，故保留符号位整体左移即可）
-* 无穷大保持不变
-* NaN保持不变。
+- 非规格化数保持符号位不变，左移一位（注意：若尾数最左边一位为1时，乘2后恰好是规格化数，故保留符号位整体左移即可）
+- 无穷大保持不变
+- NaN保持不变。
 
 ### 代码
 
 ```c
-/* 
+/*
  * floatScale2 - Return bit-level equivalent of expression 2*f for
  *   floating point argument f.
  *   Both the argument and result are passed as unsigned int's, but
@@ -427,7 +429,7 @@ unsigned floatScale2(unsigned uf) {
 ### 代码
 
 ```c
-/* 
+/*
  * floatFloat2Int - Return bit-level equivalent of expression (int) f
  *   for floating point argument f.
  *   Argument is passed as unsigned int, but
@@ -455,8 +457,6 @@ int floatFloat2Int(unsigned uf) {
 }
 ```
 
-
-
 ## 13. floatPower2
 
 求浮点表示下的$2.0$的$x$次。
@@ -466,7 +466,7 @@ emmm其实就是`exp + x`，那就处理好$0b000000$和$0b11111111$的情况就
 ### 代码
 
 ```c
-/* 
+/*
  * floatPower2 - Return bit-level equivalent of the expression 2.0^x
  *   (2.0 raised to the power x) for any 32-bit integer x.
  *
@@ -474,9 +474,9 @@ emmm其实就是`exp + x`，那就处理好$0b000000$和$0b11111111$的情况就
  *   representation as the single-precision floating-point number 2.0^x.
  *   If the result is too small to be represented as a denorm, return
  *   0. If too large, return +INF.
- * 
- *   Legal ops: Any integer/unsigned operations incl. ||, &&. Also if, while 
- *   Max ops: 30 
+ *
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. Also if, while
+ *   Max ops: 30
  *   Rating: 4
  */
 unsigned floatPower2(int x) {

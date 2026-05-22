@@ -2,7 +2,7 @@
 title: "🧩带图标的 Blog 跳转链接"
 description: "记录为博客跳转链接添加 favicon 图标的字段设计与实现思路，对比默认路径和 Google Favicon 服务。"
 date: "2025-08-21T01:31:51+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -38,7 +38,7 @@ const defaultOptions: Options = {
   lazyLoad: false,
   externalLinkIcon: true,
   showLinkFavicon: true,
-}
+};
 ```
 
 在`CrawlLinks`定义中添加实现：
@@ -96,8 +96,8 @@ function getDefaultFaviconUrl(url: string): string {
 }
 
 // 使用示例
-const faviconUrl = getDefaultFaviconUrl('https://example.com');
-console.log('Default favicon URL:', faviconUrl);
+const faviconUrl = getDefaultFaviconUrl("https://example.com");
+console.log("Default favicon URL:", faviconUrl);
 ```
 
 但是 favicon.ico 并不是每个网站都设置在同样的路径下，其格式也不一定都是`.ico`。
@@ -123,13 +123,13 @@ async function getFaviconUrl(url: string): Promise<string | null> {
     const domain = new URL(url).hostname;
     return `https://s2.googleusercontent.com/s2/favicons?domain_url=${domain}`;
   } catch (error) {
-    console.error('Error getting favicon:', error);
+    console.error("Error getting favicon:", error);
     return null;
   }
 }
 
 // 使用示例
-getFaviconUrl('https://example.com').then(faviconUrl => {
-  console.log('Favicon URL:', faviconUrl);
+getFaviconUrl("https://example.com").then((faviconUrl) => {
+  console.log("Favicon URL:", faviconUrl);
 });
 ```

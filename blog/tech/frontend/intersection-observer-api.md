@@ -2,7 +2,7 @@
 title: "Intersection Observer API 监听是否进入了可视区域"
 description: "Intersection Observer API 学习笔记，介绍观察器配置、回调机制、懒加载和元素入场动画等用法。"
 date: "2025-09-17T17:53:56+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -34,7 +34,7 @@ Intersection Observer API 将这些工作交给浏览器原生处理，性能高
 ### 创建观察器
 
 ```js
-new IntersectionObserver(callback, options)
+new IntersectionObserver(callback, options);
 ```
 
 - **callback**： 当被观察元素的交叉状态发生变化时执行的回调函数。
@@ -44,9 +44,9 @@ new IntersectionObserver(callback, options)
 
 ```js
 let options = {
-  root: null,        // 指定根元素，默认为浏览器视口
-  rootMargin: '0px', // 根元素的扩缩边距，类似于 CSS 的 margin
-  threshold: 0       // 交叉比例的阈值，可以是数组 [0, 0.25, 0.5, 0.75, 1]
+  root: null, // 指定根元素，默认为浏览器视口
+  rootMargin: "0px", // 根元素的扩缩边距，类似于 CSS 的 margin
+  threshold: 0, // 交叉比例的阈值，可以是数组 [0, 0.25, 0.5, 0.75, 1]
 };
 ```
 
@@ -82,24 +82,27 @@ let options = {
 
 <script>
   // 1. 创建观察器
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      // 2. 如果元素进入视口
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        // 3. 将 data-src 的值赋给 src，开始加载图片
-        img.src = img.dataset.src;
-        img.classList.remove('lazy-load');
-        // 4. 图片加载完成后，停止观察
-        observer.unobserve(img);
-      }
-    });
-  }, {
-    rootMargin: '0px 0px 100px 0px' // 在视口底部还有 100px 时就开始加载
-  });
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        // 2. 如果元素进入视口
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          // 3. 将 data-src 的值赋给 src，开始加载图片
+          img.src = img.dataset.src;
+          img.classList.remove("lazy-load");
+          // 4. 图片加载完成后，停止观察
+          observer.unobserve(img);
+        }
+      });
+    },
+    {
+      rootMargin: "0px 0px 100px 0px", // 在视口底部还有 100px 时就开始加载
+    },
+  );
 
   // 5. 找到所有需要懒加载的图片，并开始观察
-  document.querySelectorAll('img.lazy-load').forEach(img => {
+  document.querySelectorAll("img.lazy-load").forEach((img) => {
     observer.observe(img);
   });
 </script>
@@ -114,7 +117,9 @@ let options = {
   .fade-in-section {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
   }
   .fade-in-section.is-visible {
     opacity: 1;
@@ -123,23 +128,26 @@ let options = {
 </style>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      // 使用 isIntersecting 判断
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        // 如果动画只需要播放一次，可以在这里取消观察
-        // observer.unobserve(entry.target);
-      } else {
-        // 如果想在元素离开视口时取消动画，可以移除类
-        // entry.target.classList.remove('is-visible');
-      }
-    });
-  }, {
-    threshold: 0.1 // 元素有 10% 可见时就触发
-  });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        // 使用 isIntersecting 判断
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          // 如果动画只需要播放一次，可以在这里取消观察
+          // observer.unobserve(entry.target);
+        } else {
+          // 如果想在元素离开视口时取消动画，可以移除类
+          // entry.target.classList.remove('is-visible');
+        }
+      });
+    },
+    {
+      threshold: 0.1, // 元素有 10% 可见时就触发
+    },
+  );
 
-  document.querySelectorAll('.fade-in-section').forEach(section => {
+  document.querySelectorAll(".fade-in-section").forEach((section) => {
     observer.observe(section);
   });
 </script>

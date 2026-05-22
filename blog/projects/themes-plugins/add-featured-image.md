@@ -2,7 +2,7 @@
 title: "在 quartz 主题中给博客添加封面首图"
 description: "记录在 Quartz 主题中为博客添加封面首图的实现步骤，涵盖插件结构和组件结构改造。"
 date: "2025-07-28T01:35:30+08:00"
-draft: true
+draft: false
 showHeroImage: false
 tags: []
 comments: true
@@ -26,26 +26,26 @@ sidebar:
 /* existing codes */
 declare module "vfile" {
   interface DataMap {
-    aliases: FullSlug[]
+    aliases: FullSlug[];
     frontmatter: { [key: string]: unknown } & {
-      title: string
+      title: string;
     } & Partial<{
-      tags: string[]
-      aliases: string[]
-      modified: string
-      created: string
-      published: string
-      description: string
-      socialDescription: string
-      publish: boolean | string
-      draft: boolean | string
-      lang: string
-      enableToc: string
-      cssclasses: string[]
-      socialImage: string
-      featuredImage: string
-      comments: boolean | string
-    }>
+        tags: string[];
+        aliases: string[];
+        modified: string;
+        created: string;
+        published: string;
+        description: string;
+        socialDescription: string;
+        publish: boolean | string;
+        draft: boolean | string;
+        lang: string;
+        enableToc: string;
+        cssclasses: string[];
+        socialImage: string;
+        featuredImage: string;
+        comments: boolean | string;
+      }>;
   }
 }
 /* existing codes */
@@ -58,21 +58,28 @@ quartz 的所有主题都在`quartz/components`下，以此为根目录，`index
 所以，我们模仿相同的文件结构，在`quartz/components`下新建一个tsx文件`FeaturedImage.tsx`，内容像这样：
 
 ```tsx title="FeaturedImage"
-import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import { classNames } from "../util/lang"
+import {
+  QuartzComponent,
+  QuartzComponentConstructor,
+  QuartzComponentProps,
+} from "./types";
+import { classNames } from "../util/lang";
 
-const FeaturedImage: QuartzComponent = ({ fileData, displayClass }: QuartzComponentProps) => {
-  const featuredImage = fileData.frontmatter?.featuredImage
+const FeaturedImage: QuartzComponent = ({
+  fileData,
+  displayClass,
+}: QuartzComponentProps) => {
+  const featuredImage = fileData.frontmatter?.featuredImage;
   if (featuredImage) {
     return (
       <div class={classNames(displayClass, "featured-image")}>
         <img src={featuredImage} alt="Featured" />
       </div>
-    )
+    );
   } else {
-    return null
+    return null;
   }
-}
+};
 
 FeaturedImage.css = `
 .featured-image {
@@ -87,10 +94,9 @@ FeaturedImage.css = `
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-`
+`;
 
-export default (() => FeaturedImage) satisfies QuartzComponentConstructor
-
+export default (() => FeaturedImage) satisfies QuartzComponentConstructor;
 ```
 
 再在`index.ts`中将`FeaturedImage`导入，之后在`quartz.layout.ts`中添加即可：
